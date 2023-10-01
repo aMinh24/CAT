@@ -94,7 +94,7 @@ public class CatMovement : MonoBehaviour
             
         }
         //y += gravity();
-        Vector2 v = new Vector2((rb.velocity.x+x)>speed ?speed : (rb.velocity.x + x)<-speed?-speed : (rb.velocity.x + x), rb.velocity.y+y);    //control velocity x in range(-10;10);
+        Vector2 v = new Vector2((/*rb.velocity.x+*/x)>speed ?speed : (/*rb.velocity.x +*/ x)<-speed?-speed : (/*rb.velocity.x +*/ x), rb.velocity.y+y);    //control velocity x in range(-10;10);
         rb.velocity = new Vector2 (v.x* jspeed, v.y);
         Debug.Log(rb.velocity);
         
