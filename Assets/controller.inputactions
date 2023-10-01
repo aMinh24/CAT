@@ -1,0 +1,54 @@
+{
+    "name": "controller",
+    "maps": [
+        {
+            "name": "Move",
+            "id": "a27f1318-0406-4d73-9e95-b2c33ceaa5c7",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "bd7269e2-e1b0-4840-a695-bc41c7e09213",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "245ff49c-9d63-435a-95dc-d4aba7b0e44f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f2ca8541-38b7-4302-827e-26e55c6bd8aa",
+                    "path": "<iOSGameController>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2f09c4b-f7cb-4e3b-94d2-51e10acc5289",
+                    "path": "<iOSGameController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
