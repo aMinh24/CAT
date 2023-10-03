@@ -21,7 +21,11 @@ public class CatMovement : MonoBehaviour
     private float jumpHeight = 3.5f;
     private float speed = 10;
     private float speedJump = 10;
+    private float speedClimb;
+    [SerializeField]
+    private float speedSlide;
 
+    private bool isClimbing = false;
     //private bool isJumping;
     //private float xJump = 0;
     //private float timeFalling = 0;
@@ -39,6 +43,8 @@ public class CatMovement : MonoBehaviour
             jumpHeight = DataManager.Instance.Config.jumpHeight;
             speed = DataManager.Instance.Config.speed;
             speedJump = DataManager.Instance.Config.speedJump;
+            speedClimb = DataManager.Instance.Config.speedClimb;
+            speedSlide = DataManager.Instance.Config.speedSlide;
         }
     }
     // Update is called once per frame
@@ -58,18 +64,35 @@ public class CatMovement : MonoBehaviour
         else
         {
             rb.sharedMaterial = null;
+            isClimbing = false;
         }
         if (IsClimbing())
         {
+            isClimbing = true;   
+        }
+        if (isClimbing)
+        {
+            y = input.actions["Move"].ReadValue<Vector2>().normalized.y * speedClimb;
+            if (input.actions["Jump"].triggered && (spriteRenderer.flipX?(x>0):(x<0)))
+            {
+                y = jumpHeight;
+                rb.gravityScale = 3;
+                isClimbing = false;
+            }
+            else
+            {
+                rb.gravityScale = 0;
+                x = 0;
+            }
+            
+            
             rb.velocity = Vector3.zero;
-            rb.gravityScale = 0;
         }
         else
         {
             rb.gravityScale = 3;
             if (input.actions["Jump"].triggered && IsGround())          //Jump
             {
-
                 y = jumpHeight;
                 //xJump = x;
             }
@@ -99,10 +122,9 @@ public class CatMovement : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
-
         }
-
-        rb.velocity = new Vector2(x * jspeed, rb.velocity.y + y);
+        rb.velocity = new Vector2(x * jspeed, isClimbing?(y-speedSlide): rb.velocity.y + y);
+        Debug.Log("ve " + rb.velocity);
 
 
     }
