@@ -66,6 +66,8 @@ public class CatMovement : MonoBehaviour
             rb.sharedMaterial = null;
             isClimbing = false;
         }
+
+        Debug.Log(IsGround());
         if (IsClimbing())
         {
             isClimbing = true;   
@@ -105,7 +107,7 @@ public class CatMovement : MonoBehaviour
             jspeed = speedJump / 10;
         }
 
-
+        
         //Debug.Log("is ground " + IsGround()+" wall "+ IsTouchingWall());
         if (x != 0)
         {
@@ -124,7 +126,6 @@ public class CatMovement : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
         rb.velocity = new Vector2(x * jspeed, isClimbing?(y-speedSlide): rb.velocity.y + y);
-        Debug.Log("ve " + rb.velocity);
 
 
     }
@@ -139,6 +140,7 @@ public class CatMovement : MonoBehaviour
         return IsTouchingWall() && !IsGround();
 
     }
+
     private bool IsTouchingWall()
     {
         return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, spriteRenderer.flipX ? Vector2.left : Vector2.right, 0.03f, jumpableGround) && rb.velocity.y < 0;
