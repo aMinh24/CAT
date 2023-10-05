@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 6531413862407072581}
   interact: {fileID: 5677752256131451060}
-  iter: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &3818908880791489590
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <iOSGameController>/buttonWest
+  m_ControlPath: <Gamepad>/buttonEast
 --- !u!1 &4041033343143656842
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovementRange: 75
   m_DynamicOriginRange: 100
-  m_ControlPath: <iOSGameController>/leftStick
+  m_ControlPath: <Joystick>/stick
   m_Behaviour: 0
   m_UseIsolatedInputActions: 0
   m_PointerDownAction:

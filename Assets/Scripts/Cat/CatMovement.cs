@@ -67,7 +67,6 @@ public class CatMovement : MonoBehaviour
             isClimbing = false;
         }
 
-        Debug.Log(IsGround());
         if (IsClimbing())
         {
             isClimbing = true;   
@@ -126,7 +125,7 @@ public class CatMovement : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
         rb.velocity = new Vector2(x * jspeed, isClimbing?(y-speedSlide): rb.velocity.y + y);
-
+        Debug.Log(rb.velocity);
 
     }
 

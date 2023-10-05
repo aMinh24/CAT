@@ -23,14 +23,15 @@ public class IngameUI : BaseScreen
     public override void Init()
     {
         base.Init();
-        EnhancedTouchSupport.Enable();
         joystickPosition = joystick.anchoredPosition;
-        EnTouch.Touch.onFingerDown += HandleFingerDown;
-        EnTouch.Touch.onFingerUp += HandleFingerUp;
     }
 
     public override void Show(object data)
     {
+        EnhancedTouchSupport.Enable();
+        
+        EnTouch.Touch.onFingerDown += HandleFingerDown;
+        EnTouch.Touch.onFingerUp += HandleFingerUp;
         if (data is Interact i)
         {
             i.interact = interact;

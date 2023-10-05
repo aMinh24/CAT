@@ -10,7 +10,7 @@ public class CatHide : MonoBehaviour
         if (collision.CompareTag("Pot")) isHiding = true;
         if (collision.CompareTag("Redzone"))
         {
-            if (UIManager.HasInstance)
+            if (UIManager.HasInstance && !isHiding)
             {
                 UIManager.Instance.ShowScreen<FinishLevel>(null,true);
             }

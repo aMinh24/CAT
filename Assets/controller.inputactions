@@ -28,7 +28,7 @@
                 {
                     "name": "",
                     "id": "f2ca8541-38b7-4302-827e-26e55c6bd8aa",
-                    "path": "<iOSGameController>/leftStick",
+                    "path": "<Joystick>/stick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -39,7 +39,7 @@
                 {
                     "name": "",
                     "id": "e2f09c4b-f7cb-4e3b-94d2-51e10acc5289",
-                    "path": "<iOSGameController>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
