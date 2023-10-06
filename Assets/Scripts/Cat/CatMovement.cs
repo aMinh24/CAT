@@ -12,6 +12,8 @@ public class CatMovement : MonoBehaviour
     private BoxCollider2D boxcollider;
     [SerializeField]
     private LayerMask jumpableGround;
+    [SerializeField]
+    private LayerMask climbWall;
     public PlayerInput input;
 
 
@@ -66,7 +68,10 @@ public class CatMovement : MonoBehaviour
             rb.sharedMaterial = null;
             isClimbing = false;
         }
-
+        if (!IsTouchingWall())
+        {
+            isClimbing = false;
+        }
         if (IsClimbing())
         {
             isClimbing = true;   
@@ -136,12 +141,12 @@ public class CatMovement : MonoBehaviour
     }
     private bool IsClimbing()
     {
-        return IsTouchingWall() && !IsGround();
+        return IsTouchingWall() && !IsGround() && rb.velocity.y < 0;
 
     }
 
     private bool IsTouchingWall()
     {
-        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, spriteRenderer.flipX ? Vector2.left : Vector2.right, 0.03f, jumpableGround) && rb.velocity.y < 0;
+        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, spriteRenderer.flipX ? Vector2.left : Vector2.right, 0.03f, climbWall);
     }
 }

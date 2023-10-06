@@ -4971,7 +4971,7 @@ GameObject:
   - component: {fileID: 958166068}
   - component: {fileID: 958166070}
   - component: {fileID: 958166069}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8838,6 +8838,9 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 8
+  climbWall:
+    serializedVersion: 2
+    m_Bits: 128
   input: {fileID: 1728887306}
   speedSlide: 0
 --- !u!114 &1728887306
