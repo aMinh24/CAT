@@ -9,3 +9,9 @@ public enum Items{
     None,
     Key
 }
+public enum CatStateID
+{
+    OnGround,
+    InTheAir,
+    Climbing
+}

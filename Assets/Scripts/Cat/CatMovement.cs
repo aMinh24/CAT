@@ -100,7 +100,6 @@ public class CatMovement : MonoBehaviour
             if (input.actions["Jump"].triggered && IsGround())          //Jump
             {
                 y = jumpHeight;
-                //xJump = x;
             }
         }
         
@@ -112,7 +111,6 @@ public class CatMovement : MonoBehaviour
         }
 
         
-        //Debug.Log("is ground " + IsGround()+" wall "+ IsTouchingWall());
         if (x != 0)
         {
             animator.SetBool("isWalking", true);
