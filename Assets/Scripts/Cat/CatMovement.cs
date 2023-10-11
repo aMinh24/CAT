@@ -8,27 +8,30 @@ using UnityEngine.InputSystem.EnhancedTouch;
 
 public class CatMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private BoxCollider2D boxcollider;
-    [SerializeField]
-    private LayerMask jumpableGround;
-    [SerializeField]
-    private LayerMask climbWall;
+    [HideInInspector]
+    public Rigidbody2D rb;
+    [HideInInspector]
+    public BoxCollider2D boxcollider;
+    public LayerMask jumpableGround;
+    public LayerMask climbWall;
     public PlayerInput input;
+    public Vector2 inputMove;
+    [HideInInspector]
+    public CatStateMachine stateMachine;
+    public CatStateID initState = CatStateID.OnGround;
 
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
-    private Animator animator;
-    private SpriteRenderer spriteRenderer;
-
-    private float jumpHeight = 3.5f;
-    private float speed = 10;
-    private float speedJump = 10;
-    private float speedClimb;
+    public float jumpHeight = 3.5f;
+    public float speed = 10;
+    public float speedJump = 10;
+    public float speedClimb;
     [SerializeField]
-    private float speedSlide;
+    public float speedSlide;
 
-    private bool isClimbing = false;
-    //private bool isJumping;
+    public bool isClimbing = false;
+    public bool isJumping;
     //private float xJump = 0;
     //private float timeFalling = 0;
     void Start()
@@ -48,69 +51,88 @@ public class CatMovement : MonoBehaviour
             speedClimb = DataManager.Instance.Config.speedClimb;
             speedSlide = DataManager.Instance.Config.speedSlide;
         }
+        stateMachine = new CatStateMachine(this);
+        stateMachine.RegisterState(new CatStateOnGround());
+        stateMachine.RegisterState(new CatStateIntheAir());
+        stateMachine.RegisterState(new CatStateClimbing());
+        stateMachine.ChangeState(initState);
     }
     // Update is called once per frame
     void Update()
     {
-        float x = input.actions["Move"].ReadValue<Vector2>().normalized.x * speed;
-        float y = 0;
-        float jspeed = 1;
-
-        if (!IsGround())
+        inputMove = input.actions["Move"].ReadValue<Vector2>().normalized;
+        if (!isClimbing)
         {
-            if (DataManager.HasInstance)
+            if (inputMove.x > 0)
             {
-                rb.sharedMaterial = DataManager.Instance.Config.slip;
+                spriteRenderer.flipX = false;
             }
-        }
-        else
-        {
-            rb.sharedMaterial = null;
-            isClimbing = false;
-        }
-        if (!IsTouchingWall())
-        {
-            isClimbing = false;
-        }
-        if (IsClimbing())
-        {
-            isClimbing = true;   
-        }
-        if (isClimbing)
-        {
-            y = input.actions["Move"].ReadValue<Vector2>().normalized.y * speedClimb;
-            if (input.actions["Jump"].triggered && (spriteRenderer.flipX?(x>0):(x<0)))
+            else if (inputMove.x < 0)
             {
-                y = jumpHeight;
-                rb.gravityScale = 3;
-                isClimbing = false;
-            }
-            else
-            {
-                rb.gravityScale = 0;
-                x = 0;
-            }
-            
-            
-            rb.velocity = Vector3.zero;
-        }
-        else
-        {
-            rb.gravityScale = 3;
-            if (input.actions["Jump"].triggered && IsGround())          //Jump
-            {
-                y = jumpHeight;
+                spriteRenderer.flipX = true;
             }
         }
         
+        #region old_code
+        //float x = inputMove.x * speed;
+        //float y = 0;
+        //float jspeed = 1;
 
-        if (rb.velocity.y != 0 && !IsGround())
-        {
-            //x = xJump;                                              //can't turn when in the air
-            jspeed = speedJump / 10;
-        }
+        //if (!IsGround())
+        //{
+        //    if (DataManager.HasInstance)
+        //    {
+        //        rb.sharedMaterial = DataManager.Instance.Config.slip;
+        //    }
+        //}
+        //else
+        //{
+        //    rb.sharedMaterial = null;
+        //    isClimbing = false;
+        //}
+        //if (!IsTouchingWall())
+        //{
+        //    isClimbing = false;
+        //}
+        //if (IsClimbing())
+        //{
+        //    isClimbing = true;   
+        //}
+        //if (isClimbing)
+        //{
+        //    y = inputMove.y * speedClimb;
+        //    if (input.actions["Jump"].triggered && (spriteRenderer.flipX?(x>0):(x<0)))
+        //    {
+        //        y = jumpHeight;
+        //        rb.gravityScale = 3;
+        //        isClimbing = false;
+        //    }
+        //    else
+        //    {
+        //        rb.gravityScale = 0;
+        //        x = 0;
+        //    }
 
-        
+
+        //    rb.velocity = Vector3.zero;
+        //}
+        //else
+        //{
+        //    rb.gravityScale = 3;
+        //    if (input.actions["Jump"].triggered && IsGround())          //Jump
+        //    {
+        //        y = jumpHeight;
+        //    }
+        //}
+
+
+        //if (rb.velocity.y != 0 && !IsGround())
+        //{
+        //    //x = xJump;                                              //can't turn when in the air
+        //    jspeed = speedJump / 10;
+        //}
+
+        /*
         if (x != 0)
         {
             animator.SetBool("isWalking", true);
@@ -126,24 +148,31 @@ public class CatMovement : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
+        }*/
+        //rb.velocity = new Vector2(x * jspeed, isClimbing?(y-speedSlide): rb.velocity.y + y);
+        //Debug.Log(rb.velocity);
+        #endregion
+    }
+    private void FixedUpdate()
+    {
+        if (stateMachine != null)
+        {
+            stateMachine.UpdateInState();
         }
-        rb.velocity = new Vector2(x * jspeed, isClimbing?(y-speedSlide): rb.velocity.y + y);
-        Debug.Log(rb.velocity);
-
+        
     }
 
-
-    private bool IsGround()
+    public bool IsGround()
     {
         return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.03f, jumpableGround);
     }
-    private bool IsClimbing()
+    public bool IsClimbing()
     {
         return IsTouchingWall() && !IsGround() && rb.velocity.y < 0;
 
     }
 
-    private bool IsTouchingWall()
+    public bool IsTouchingWall()
     {
         return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, spriteRenderer.flipX ? Vector2.left : Vector2.right, 0.03f, climbWall);
     }

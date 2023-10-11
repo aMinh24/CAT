@@ -5,7 +5,7 @@ using UnityEngine;
 public interface CatState
 {
     CatStateID GetStateID();
-    void Enter();
-    void UpdateInState();
-    void Exit();
+    void Enter(CatMovement cat);
+    void UpdateInState(CatMovement cat);
+    void Exit(CatMovement cat);
 }
