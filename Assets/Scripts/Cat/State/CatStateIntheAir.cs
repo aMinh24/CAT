@@ -5,10 +5,12 @@ using UnityEngine;
 public class CatStateIntheAir : CatState
 {
     private bool flag;
+    private bool change;
     public void Enter(CatMovement cat)
     {
         cat.rb.sharedMaterial = DataManager.Instance.Config.slip;
         flag = true;
+        change = false;
         Debug.Log("Jump");
         //cat.rb.velocity = new Vector2(cat.rb.velocity.x*(cat.speedJump/10), cat.rb.velocity.y+ cat.jumpHeight);
     }
@@ -34,7 +36,13 @@ public class CatStateIntheAir : CatState
         cat.rb.velocity = new Vector2(x * cat.speedJump/10, cat.rb.velocity.y);
         if (cat.IsGround())
         {
+            if (change)
             cat.stateMachine.ChangeState(CatStateID.OnGround);
+            change = true;
+        }
+        else
+        {
+            change = false;
         }
         if (cat.IsClimbing())
         {

@@ -72,7 +72,7 @@ public class CatMovement : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
         }
-        
+        Debug.Log("IsGround " + IsGround());
         #region old_code
         //float x = inputMove.x * speed;
         //float y = 0;
