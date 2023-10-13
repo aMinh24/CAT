@@ -22,8 +22,7 @@ public class CatStateClimbing : CatState
     {
         return CatStateID.Climbing;
     }
-
-    public void UpdateInState(CatMovement cat)
+    public void FixedUpdateInState(CatMovement cat)
     {
         float y = cat.inputMove.y * cat.speedClimb;
         float x = cat.inputMove.x;
@@ -31,7 +30,7 @@ public class CatStateClimbing : CatState
         {
             cat.stateMachine.ChangeState(CatStateID.InTheAir);
         }
-        else if(cat.isJumping)
+        else if (cat.isJumping)
         {
             cat.isJumping = false;
         }
@@ -40,5 +39,11 @@ public class CatStateClimbing : CatState
             cat.stateMachine.ChangeState(CatStateID.OnGround);
         }
         cat.rb.velocity = new Vector2(0, y - cat.speedSlide);
+    }
+
+
+    public void UpdateInState(CatMovement cat)
+    {
+        
     }
 }

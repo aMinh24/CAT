@@ -6,6 +6,7 @@ public class CatStateIntheAir : CatState
 {
     private bool flag;
     private bool change;
+    private float x = 0;
     public void Enter(CatMovement cat)
     {
         cat.rb.sharedMaterial = DataManager.Instance.Config.slip;
@@ -18,26 +19,20 @@ public class CatStateIntheAir : CatState
     {
         cat.isJumping = false;
     }
-
     public CatStateID GetStateID()
     {
         return CatStateID.InTheAir;
     }
 
-    public void UpdateInState(CatMovement cat)
+    public void FixedUpdateInState(CatMovement cat)
     {
-        float x = cat.inputMove.x*cat.speed;
-        if (flag)
-        {
-            cat.rb.velocity = new Vector2(cat.rb.velocity.x * (cat.speedJump / 10), cat.rb.velocity.y + cat.jumpHeight);
-            flag = false;
-        }
-        else
-        cat.rb.velocity = new Vector2(x * cat.speedJump/10, cat.rb.velocity.y);
+        x = cat.inputMove.x * cat.speed;
+        if (!flag)
+            cat.rb.velocity = new Vector2(x * cat.speedJump / 10, cat.rb.velocity.y);
         if (cat.IsGround())
         {
             if (change)
-            cat.stateMachine.ChangeState(CatStateID.OnGround);
+                cat.stateMachine.ChangeState(CatStateID.OnGround);
             change = true;
         }
         else
@@ -47,6 +42,16 @@ public class CatStateIntheAir : CatState
         if (cat.IsClimbing())
         {
             cat.stateMachine.ChangeState(CatStateID.Climbing);
+        }
+    }
+
+
+    public void UpdateInState(CatMovement cat)
+    {
+        if (flag)
+        {
+            cat.rb.velocity = new Vector2(cat.rb.velocity.x * (cat.speedJump / 10), cat.rb.velocity.y + cat.jumpHeight);
+            flag = false;
         }
     }
 }

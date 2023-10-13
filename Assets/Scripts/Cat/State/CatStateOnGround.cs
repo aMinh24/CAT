@@ -6,6 +6,7 @@ using UnityEngine.Windows;
 
 public class CatStateOnGround : CatState
 {
+    private float x = 0;
     public void Enter(CatMovement cat)
     {
         cat.rb.sharedMaterial = null;
@@ -16,11 +17,26 @@ public class CatStateOnGround : CatState
     public void Exit(CatMovement cat)
     {
     }
-
     public CatStateID GetStateID()
     {
         return CatStateID.OnGround;
     }
+
+    public void FixedUpdateInState(CatMovement cat)
+    {
+        
+        x = cat.inputMove.x * cat.speed;
+        if (x != 0)
+        {
+            cat.animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            cat.animator.SetBool("isWalking", false);
+        }
+        cat.rb.velocity = new Vector2(x, cat.rb.velocity.y);
+    }
+
 
     public void UpdateInState(CatMovement cat)
     {
@@ -28,15 +44,5 @@ public class CatStateOnGround : CatState
         {
             cat.stateMachine.ChangeState(CatStateID.InTheAir);
         }
-        float x = cat.inputMove.x * cat.speed;
-        if (x != 0)
-        {
-            cat.animator.SetBool("isWalking", true);       
-        }
-        else
-        {
-            cat.animator.SetBool("isWalking", false);
-        }
-        cat.rb.velocity = new Vector2(x, cat.rb.velocity.y);
     }
 }

@@ -37,19 +37,27 @@ public class CatStateMachine
         state = GetState(curState);
         if (state != null)
         {
-            changeTime = 0.3f;
+            changeTime = 0.1f;
             state.Enter(cat);
         }
     }
     // Update is called once per frame
     public void UpdateInState()
     {
-        changeTime -= Time.fixedDeltaTime; 
-        
         CatState state = GetState(curState);
-        if (state !=null)
+        if (state != null)
         {
             state.UpdateInState(cat);
+        }
+    }
+    public void FixedUpdateInState()
+    {
+        changeTime -= Time.fixedDeltaTime;
+
+        CatState state = GetState(curState);
+        if (state != null)
+        {
+            state.FixedUpdateInState(cat);
         }
     }
 }

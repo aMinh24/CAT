@@ -72,7 +72,10 @@ public class CatMovement : MonoBehaviour
                 spriteRenderer.flipX = true;
             }
         }
-        Debug.Log("IsGround " + IsGround());
+        if (stateMachine != null)
+        {
+            stateMachine.UpdateInState();
+        }
         #region old_code
         //float x = inputMove.x * speed;
         //float y = 0;
@@ -157,14 +160,14 @@ public class CatMovement : MonoBehaviour
     {
         if (stateMachine != null)
         {
-            stateMachine.UpdateInState();
+            stateMachine.FixedUpdateInState();
         }
         
     }
-
+    #region condition
     public bool IsGround()
     {
-        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.03f, jumpableGround);
+        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.01f, jumpableGround);
     }
     public bool IsClimbing()
     {
@@ -174,6 +177,7 @@ public class CatMovement : MonoBehaviour
 
     public bool IsTouchingWall()
     {
-        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, spriteRenderer.flipX ? Vector2.left : Vector2.right, 0.03f, climbWall);
+        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, spriteRenderer.flipX ? Vector2.left : Vector2.right, 0.02f, climbWall);
     }
+    #endregion
 }
