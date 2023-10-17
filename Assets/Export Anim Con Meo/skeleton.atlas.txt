@@ -1,0 +1,55 @@
+
+skeleton.png
+size: 378,626
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chan_phai
+  rotate: true
+  xy: 178, 115
+  size: 102, 195
+  orig: 104, 197
+  offset: 1, 1
+  index: -1
+chan_trai
+  rotate: true
+  xy: 192, 8
+  size: 105, 184
+  orig: 108, 187
+  offset: 1, 1
+  index: -1
+dau
+  rotate: false
+  xy: 226, 219
+  size: 150, 171
+  orig: 152, 176
+  offset: 1, 2
+  index: -1
+duoi
+  rotate: true
+  xy: 2, 237
+  size: 153, 222
+  orig: 153, 223
+  offset: 0, 0
+  index: -1
+tay_phai
+  rotate: true
+  xy: 2, 2
+  size: 107, 188
+  orig: 109, 190
+  offset: 1, 1
+  index: -1
+tay_trai
+  rotate: true
+  xy: 2, 111
+  size: 124, 174
+  orig: 126, 177
+  offset: 1, 2
+  index: -1
+than
+  rotate: false
+  xy: 2, 392
+  size: 328, 232
+  orig: 331, 234
+  offset: 1, 1
+  index: -1

@@ -26,14 +26,14 @@ public class CatStateOnGround : CatState
     {
         
         x = cat.inputMove.x * cat.speed;
-        if (x != 0)
-        {
-            cat.animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            cat.animator.SetBool("isWalking", false);
-        }
+        //if (x != 0)
+        //{
+        //    cat.animator.SetBool("isWalking", true);
+        //}
+        //else
+        //{
+        //    cat.animator.SetBool("isWalking", false);
+        //}
         cat.rb.velocity = new Vector2(x, cat.rb.velocity.y);
     }
 

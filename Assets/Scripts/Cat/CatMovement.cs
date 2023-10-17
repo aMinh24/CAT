@@ -1,4 +1,5 @@
 using Cinemachine;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class CatMovement : MonoBehaviour
     public CatStateMachine stateMachine;
     public CatStateID initState = CatStateID.OnGround;
 
-    public Animator animator;
+    //public Animator animator;
     public SpriteRenderer spriteRenderer;
 
     public float jumpHeight = 3.5f;
@@ -34,15 +35,15 @@ public class CatMovement : MonoBehaviour
     public bool isJumping;
     //private float xJump = 0;
     //private float timeFalling = 0;
+
+    public SkeletonAnimation skeletonAnimation;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         boxcollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         EnhancedTouchSupport.Enable();
-
-
         if (DataManager.HasInstance)
         {
             jumpHeight = DataManager.Instance.Config.jumpHeight;
@@ -60,21 +61,21 @@ public class CatMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputMove = input.actions["Move"].ReadValue<Vector2>().normalized;
-        if (!isClimbing)
-        {
-            if (inputMove.x > 0)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else if (inputMove.x < 0)
-            {
-                spriteRenderer.flipX = true;
-            }
-        }
+        //inputMove = input.actions["Move"].ReadValue<Vector2>().normalized;
+        //if (!isClimbing)
+        //{
+        //    if (inputMove.x > 0)
+        //    {
+        //        spriteRenderer.flipX = false;
+        //    }
+        //    else if (inputMove.x < 0)
+        //    {
+        //        spriteRenderer.flipX = true;
+        //    }
+        //}
         if (stateMachine != null)
         {
-            stateMachine.UpdateInState();
+            //stateMachine.UpdateInState();
         }
         #region old_code
         //float x = inputMove.x * speed;
@@ -160,7 +161,7 @@ public class CatMovement : MonoBehaviour
     {
         if (stateMachine != null)
         {
-            stateMachine.FixedUpdateInState();
+            //stateMachine.FixedUpdateInState();
         }
         
     }
