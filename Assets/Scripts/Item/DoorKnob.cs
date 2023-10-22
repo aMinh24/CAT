@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DoorKnob : InteractItem
 {
-    public BoxCollider2D door;
+    public GameObject door;
+    public GameObject openDoor;
     public override void Interact(object data)
     {
         if (data is GameObject obj)
@@ -13,7 +14,8 @@ public class DoorKnob : InteractItem
            
             if (inter.rmItem(Items.Key))
             {
-                door.enabled = false;
+                openDoor.SetActive(true);
+                door.SetActive(false);
             }
         }
     }

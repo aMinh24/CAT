@@ -2399,7 +2399,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1728887304
@@ -2439,8 +2439,6 @@ MonoBehaviour:
   input: {fileID: 1728887306}
   inputMove: {x: 0, y: 0}
   initState: 0
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
   jumpHeight: 3.5
   speed: 10
   speedJump: 10

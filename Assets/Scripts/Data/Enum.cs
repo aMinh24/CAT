@@ -11,7 +11,8 @@ public enum Items{
 }
 public enum CatStateID
 {
-    OnGround,
-    InTheAir,
+    Idle,
+    Move,
+    Jump,
     Climbing
 }

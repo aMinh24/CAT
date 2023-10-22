@@ -17,7 +17,7 @@ public class Creep : MonoBehaviour
         sq.Append(transform.DOMove(point[i].position, time));
         sq.OnComplete(() =>
         {
-            transform.DORotate(new Vector3(0, 180*((i+1)%2), 0), 0);
+            transform.DORotate(new Vector3(0, 180*((i)%2), 0), 0);
             Movement((i+1)%2);
         });
     }

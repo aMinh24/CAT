@@ -22,7 +22,7 @@ public class MainMenu : BaseScreen
     {
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.LoadScene("GameMap1");    
+            GameManager.Instance.LoadScene("Game");    
         }
     }
 }

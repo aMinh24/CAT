@@ -10,12 +10,14 @@ public class Elevator : MonoBehaviour
     public Collider2D[] doors;
     public bool isMoving = false;
     public SpriteRenderer buttonColor;
+    public GameObject cat;
     private void Start()
     {
         transform.position = floor[curFl].position;
     }
     public void UseEle()
     {
+        cat.transform.SetParent(this.transform);
         curFl= (curFl+1)%2;
         doors[0].enabled = true; doors[1].enabled = true;
         isMoving = true;
@@ -34,16 +36,15 @@ public class Elevator : MonoBehaviour
             }
             isMoving = false;
             buttonColor.color = Color.green;
-
+            cat.transform.SetParent(null);
         });
 
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.transform.SetParent(transform);
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        collision.gameObject.transform.SetParent(null);
+        if (collision.CompareTag("Player"))
+        {
+            cat = collision.gameObject;
+        }
     }
 }

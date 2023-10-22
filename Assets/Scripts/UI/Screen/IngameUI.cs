@@ -11,7 +11,7 @@ public class IngameUI : BaseScreen
     private Vector2 joystickPosition;
     public Button interact;
     public Interact inter;
-    private CatMovement cat;
+    private CatController cat;
     public override void Hide()
     {
         base.Hide();
@@ -34,7 +34,7 @@ public class IngameUI : BaseScreen
         EnTouch.Touch.onFingerUp += HandleFingerUp;
         if (data is Interact i)
         {
-            cat = i.gameObject.GetComponent<CatMovement>();
+            cat = i.gameObject.GetComponent<CatController>();
             i.interact = interact;
             inter = i;
         }
@@ -74,6 +74,7 @@ public class IngameUI : BaseScreen
             if(RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, TouchedFinger.screenPosition,null,out point))
             {
                 joystick.anchoredPosition = point;
+                Debug.Log(point);
             }
             else
             {
