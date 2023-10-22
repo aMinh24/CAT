@@ -8,14 +8,11 @@ public class CatStateClimbing : CatState
     {
         cat.rb.gravityScale = 0;
         cat.rb.velocity = Vector2.zero; 
-        cat.isClimbing = true;
-        Debug.Log("climb");
     }
 
     public void Exit(CatController cat)
     {
         cat.rb.gravityScale = 3;
-        cat.isClimbing = false;
     }
 
     public CatStateID GetStateID()
@@ -25,8 +22,14 @@ public class CatStateClimbing : CatState
     public void FixedUpdateInState(CatController cat)
     {
         float y = cat.inputMove.y * cat.speedClimb;
+        cat.rb.velocity = new Vector2(0, y - cat.speedSlide);
+    }
+
+
+    public void UpdateInState(CatController cat)
+    {
         float x = cat.inputMove.x;
-        if (cat.isJumping && (cat.transform.rotation.y !=0 ? (x > 0) : (x < 0)))
+        if (cat.isJumping && (cat.transform.rotation.y != 0 ? (x > 0) : (x < 0)))
         {
             cat.stateMachine.ChangeState(CatStateID.Jump);
         }
@@ -40,14 +43,7 @@ public class CatStateClimbing : CatState
             {
                 cat.stateMachine.ChangeState(CatStateID.Idle);
             }
-            
+
         }
-        cat.rb.velocity = new Vector2(0, y - cat.speedSlide);
-    }
-
-
-    public void UpdateInState(CatController cat)
-    {
-        
     }
 }

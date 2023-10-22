@@ -7,11 +7,12 @@ public class CatStateMove : CatState
     public void Enter(CatController cat)
     {
         cat.rb.sharedMaterial = null;
-        cat.isClimbing = false;
+        cat.dustParticle.Play();
     }
 
     public void Exit(CatController cat)
     {
+        cat.dustParticle.Stop();
     }
     public CatStateID GetStateID()
     {
@@ -22,20 +23,20 @@ public class CatStateMove : CatState
     {
         
         x = cat.inputMove.x * cat.speed;
-        //if (x != 0)
-        //{
-        //    cat.animator.SetBool("isWalking", true);
-        //}
-        //else
-        //{
-        //    cat.animator.SetBool("isWalking", false);
-        //}
         cat.rb.velocity = new Vector2(x, cat.rb.velocity.y);
     }
 
 
     public void UpdateInState(CatController cat)
     {
+        if (cat.inputMove.x > 0)
+        {
+            cat.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (cat.inputMove.x < 0)
+        {
+            cat.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
         if (cat.inputMove.x == 0)
         {
             cat.stateMachine.ChangeState(CatStateID.Idle);
@@ -43,6 +44,10 @@ public class CatStateMove : CatState
         if (cat.isJumping)
         {
             cat.stateMachine.ChangeState(CatStateID.Jump);
+        }
+        if (cat.rb.velocity.y < -0.1f)
+        {
+            cat.stateMachine.ChangeState(CatStateID.InAir);
         }
     }
 }

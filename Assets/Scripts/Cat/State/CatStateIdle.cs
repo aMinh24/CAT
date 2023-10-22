@@ -7,7 +7,6 @@ public class CatStateIdle : CatState
     public void Enter(CatController cat)
     {
         cat.rb.sharedMaterial = null;
-        cat.isClimbing = false;
     }
 
     public void Exit(CatController cat)

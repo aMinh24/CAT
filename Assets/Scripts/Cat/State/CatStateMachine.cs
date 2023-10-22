@@ -6,7 +6,7 @@ public class CatStateMachine
     private CatController cat;
     private CatStateID curState;
     private CatState[] states;
-    private float changeTime = 0;
+
     private AnimationController controller;
     public CatStateMachine(CatController cat)
     {
@@ -26,10 +26,6 @@ public class CatStateMachine
     }
     public void ChangeState(CatStateID newState)
     {
-        if (changeTime > 0)
-        {
-            return;
-        }
         CatState state = states[(int)curState];
         if (state != null)
         {
@@ -39,7 +35,6 @@ public class CatStateMachine
         state = GetState(curState);
         if (state != null)
         {
-            changeTime = 0.1f;
             state.Enter(cat);
             controller.playAnim(curState);
         }
@@ -56,8 +51,6 @@ public class CatStateMachine
     }
     public void FixedUpdateInState()
     {
-        changeTime -= Time.fixedDeltaTime;
-
         CatState state = GetState(curState);
         if (state != null)
         {
