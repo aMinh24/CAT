@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class CatStateMachine
 {
-    private CatMovement cat;
+    private CatController cat;
     private CatStateID curState;
     private CatState[] states;
     private float changeTime = 0;
-    public CatStateMachine(CatMovement cat)
+    private AnimationController controller;
+    public CatStateMachine(CatController cat)
     {
         this.cat = cat;
         states = new CatState[Enum.GetNames(typeof(CatStateID)).Length];
+        controller = cat.controller;
     }
     
     public void RegisterState(CatState state)
@@ -39,11 +41,13 @@ public class CatStateMachine
         {
             changeTime = 0.1f;
             state.Enter(cat);
+            controller.playAnim(curState);
         }
     }
     // Update is called once per frame
     public void UpdateInState()
     {
+        Debug.Log(GetState(curState).ToString());
         CatState state = GetState(curState);
         if (state != null)
         {

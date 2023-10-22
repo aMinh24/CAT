@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatStateClimbing : CatState
 {
-    public void Enter(CatMovement cat)
+    public void Enter(CatController cat)
     {
         cat.rb.gravityScale = 0;
         cat.rb.velocity = Vector2.zero; 
@@ -12,7 +12,7 @@ public class CatStateClimbing : CatState
         Debug.Log("climb");
     }
 
-    public void Exit(CatMovement cat)
+    public void Exit(CatController cat)
     {
         cat.rb.gravityScale = 3;
         cat.isClimbing = false;
@@ -22,13 +22,13 @@ public class CatStateClimbing : CatState
     {
         return CatStateID.Climbing;
     }
-    public void FixedUpdateInState(CatMovement cat)
+    public void FixedUpdateInState(CatController cat)
     {
         float y = cat.inputMove.y * cat.speedClimb;
         float x = cat.inputMove.x;
-        if (cat.isJumping && (cat.spriteRenderer.flipX ? (x > 0) : (x < 0)))
+        if (cat.isJumping && (cat.transform.rotation.y !=0 ? (x > 0) : (x < 0)))
         {
-            cat.stateMachine.ChangeState(CatStateID.InTheAir);
+            cat.stateMachine.ChangeState(CatStateID.Jump);
         }
         else if (cat.isJumping)
         {
@@ -36,13 +36,17 @@ public class CatStateClimbing : CatState
         }
         if (cat.IsGround())
         {
-            cat.stateMachine.ChangeState(CatStateID.OnGround);
+            if (cat.inputMove.x != 0)
+            {
+                cat.stateMachine.ChangeState(CatStateID.Idle);
+            }
+            
         }
         cat.rb.velocity = new Vector2(0, y - cat.speedSlide);
     }
 
 
-    public void UpdateInState(CatMovement cat)
+    public void UpdateInState(CatController cat)
     {
         
     }
