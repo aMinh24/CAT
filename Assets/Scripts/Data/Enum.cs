@@ -14,5 +14,6 @@ public enum CatStateID
     Idle,
     Move,
     Jump,
+    InAir,
     Climbing
 }

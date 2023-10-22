@@ -74,7 +74,6 @@ public class IngameUI : BaseScreen
             if(RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, TouchedFinger.screenPosition,null,out point))
             {
                 joystick.anchoredPosition = point;
-                Debug.Log(point);
             }
             else
             {
