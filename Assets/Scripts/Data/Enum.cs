@@ -17,3 +17,7 @@ public enum CatStateID
     InAir,
     Climbing
 }
+public enum EventID
+{
+
+}
