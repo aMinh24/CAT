@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 using EnTouch = UnityEngine.InputSystem.EnhancedTouch;
@@ -9,15 +10,21 @@ public class IngameUI : BaseScreen
 {
     public RectTransform joystick;
     private Vector2 joystickPosition;
+    public GameObject jumpButton;
     public Button interact;
     public Interact inter;
     private CatController cat;
+    public GameObject[] tutorial = new GameObject[3];
+    private int curTutorial = 0;
+    public GameObject tip;
+    public bool isShowTutorial = false;
     public override void Hide()
     {
         base.Hide();
         EnTouch.Touch.onFingerDown -= HandleFingerDown;
         EnTouch.Touch.onFingerUp -= HandleFingerUp;
         EnhancedTouchSupport.Disable();
+        this.Unregister(EventID.Tutorial, ShowTutorial);
     }
 
     public override void Init()
@@ -38,8 +45,27 @@ public class IngameUI : BaseScreen
             i.interact = interact;
             inter = i;
         }
+        this.Register(EventID.Tutorial, ShowTutorial);
         base.Show(data);
         
+    }
+    public void ShowTutorial(object data)
+    {
+
+        if (data is int i)
+        {
+            tip.SetActive(true);
+            curTutorial = i;
+            isShowTutorial = true;
+            if (i >= tutorial.Length) return;
+            if (i == 1)
+            {
+                jumpButton.SetActive(true);
+            }                   
+            tutorial[i]?.SetActive(true);
+            
+            Debug.Log("show" + i);
+        }
     }
     public void OnInteractButton()
     {
@@ -65,7 +91,16 @@ public class IngameUI : BaseScreen
     }
     private void HandleFingerDown(Finger TouchedFinger)
     {
-        
+        if (isShowTutorial)
+        {           
+            TutorialManager.Instance.CancelCase(curTutorial);                
+            tip.SetActive(false);
+            isShowTutorial=false;
+            if (curTutorial <tutorial.Length)
+            {
+                tutorial[curTutorial]?.SetActive(false);
+            }          
+        }
         if (TouchedFinger.screenPosition.x < Screen.width / 2 && TouchedFinger.screenPosition.y < Screen.height * 2 / 3)
         {
             //joystick.anchoredPosition = TouchedFinger.screenPosition;

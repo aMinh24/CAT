@@ -10,6 +10,7 @@ public class Interact : MonoBehaviour
     public InteractItem curItem;
     public Dictionary<Items, InteractItem> canUseItems = new Dictionary<Items, InteractItem>();
     public CinemachineConfiner confiner;
+    private bool firstInteract = true;
     private void Awake()
     {
         if (UIManager.HasInstance)
@@ -26,6 +27,11 @@ public class Interact : MonoBehaviour
         }
 
         if (!collision.GetComponent<InteractItem>()) return;
+        if (firstInteract)
+        {
+            TutorialManager.Instance.NextTutorial();        //2
+            firstInteract = false;
+        }
         interact.gameObject.SetActive(true);
         if (curItem != collision.GetComponent<InteractItem>())
         {

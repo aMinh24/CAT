@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 public class ListenerManager : BaseManager<ListenerManager>
 {
-    private Dictionary<EventID, Action<object>> listeners;
+    private Dictionary<EventID, Action<object>> listeners = new Dictionary<EventID, Action<object>>();
 
     #region Register, Unregister, Broadcast
     public void Register(EventID id, Action<object> action)
@@ -46,7 +46,7 @@ public static class ListenerManagerExtension
     {
         if (ListenerManager.HasInstance)
         {
-            ListenerManager.Instance.Register(id, action);
+            ListenerManager.Instance.Register(id, action);        
         }
     }
     public static void Unregister(this MonoBehaviour listener, EventID id, Action<object> action)

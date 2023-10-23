@@ -11,6 +11,7 @@ public class Elevator : MonoBehaviour
     public bool isMoving = false;
     public SpriteRenderer buttonColor;
     public GameObject cat;
+    public bool first;
     private void Start()
     {
         transform.position = floor[curFl].position;
@@ -20,12 +21,18 @@ public class Elevator : MonoBehaviour
         cat.transform.SetParent(this.transform);
         curFl= (curFl+1)%2;
         doors[0].enabled = true; doors[1].enabled = true;
+        doors[2].enabled = false;
         isMoving = true;
         buttonColor.color = Color.red;
         Sequence sq = DOTween.Sequence();
         sq.Append(transform.DOMove(floor[curFl].position,3f));
         sq.OnComplete(() =>
         {
+            if (first)
+            {
+                TutorialManager.Instance.NextTutorial();
+                first = false;
+            }
             if (curFl == 1)
             {
                 doors[0].enabled = false; doors[1].enabled = true;
@@ -33,6 +40,7 @@ public class Elevator : MonoBehaviour
             else
             {
                 doors[0].enabled = false; doors[1].enabled = false;
+                doors[2].enabled = true;
             }
             isMoving = false;
             buttonColor.color = Color.green;
