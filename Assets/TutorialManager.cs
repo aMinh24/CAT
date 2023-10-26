@@ -66,6 +66,11 @@ public class TutorialManager : MonoBehaviour
                     DOTween.To(() => group.m_Targets[1].weight, x => group.m_Targets[1].weight = x, 0f, 1f).SetEase(Ease.Linear);
                     break;
                 }
+            case 5:
+                {
+                    tutorials[5].SetActive(false );
+                    break;
+                }
         }
         
         //DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, new Vector3(0,2,0), 0.2f).SetEase(Ease.Linear);
