@@ -13,12 +13,13 @@ public class ListenerManager : BaseManager<ListenerManager>
         if (action == null) { return; }
         if (listeners.ContainsKey(id))
         {
+            if (listeners[id] != null)
             if (!listeners[id].GetInvocationList().Contains(action))
                 listeners[id] += action;
         }
         else
         {
-            listeners.Add(id, null);
+            listeners.Add(id,(obj)=> { });
             listeners[id] += action;
         }
     }

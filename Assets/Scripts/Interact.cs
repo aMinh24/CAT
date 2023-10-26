@@ -61,7 +61,7 @@ public class Interact : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        interact.gameObject.SetActive(false);
+        interact.gameObject.SetActive(false); 
     }
     public void OnButtonInteract()
     {

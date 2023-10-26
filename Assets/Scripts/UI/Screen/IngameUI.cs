@@ -21,6 +21,7 @@ public class IngameUI : BaseScreen
     public override void Hide()
     {
         base.Hide();
+
         EnTouch.Touch.onFingerDown -= HandleFingerDown;
         EnTouch.Touch.onFingerUp -= HandleFingerUp;
         EnhancedTouchSupport.Disable();
@@ -30,6 +31,9 @@ public class IngameUI : BaseScreen
     public override void Init()
     {
         base.Init();
+        inter = FindAnyObjectByType<Interact>();
+        cat = inter.GetComponent<CatController>();
+        inter.interact = interact;
         joystickPosition = joystick.anchoredPosition;
     }
 
@@ -46,6 +50,8 @@ public class IngameUI : BaseScreen
             inter = i;
         }
         this.Register(EventID.Tutorial, ShowTutorial);
+        joystick.anchoredPosition = joystickPosition;
+        TutorialManager.Instance.NextTutorial();
         base.Show(data);
         
     }
@@ -62,7 +68,7 @@ public class IngameUI : BaseScreen
             {
                 jumpButton.SetActive(true);
             }                   
-            tutorial[i]?.SetActive(true);
+            tutorial[i].SetActive(true);
             
             Debug.Log("show" + i);
         }
@@ -83,7 +89,7 @@ public class IngameUI : BaseScreen
     }
     private void HandleFingerUp(Finger TouchedFinger)
     {
-        if (TouchedFinger.screenPosition.x < Screen.width / 2 && TouchedFinger.screenPosition.y < Screen.height * 2 / 3)
+        if (TouchedFinger.screenPosition.x < Screen.width*2 / 3 && TouchedFinger.screenPosition.y < Screen.height * 2 / 3)
         {
             joystick.anchoredPosition = joystickPosition;
         }
@@ -98,7 +104,7 @@ public class IngameUI : BaseScreen
             isShowTutorial=false;
             if (curTutorial <tutorial.Length)
             {
-                tutorial[curTutorial]?.SetActive(false);
+                tutorial[curTutorial].SetActive(false);
             }          
         }
         if (TouchedFinger.screenPosition.x < Screen.width / 2 && TouchedFinger.screenPosition.y < Screen.height * 2 / 3)

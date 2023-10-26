@@ -19,9 +19,10 @@ public class CatHide : MonoBehaviour
         }
         if (collision.CompareTag("Redzone"))
         {
-            if (UIManager.HasInstance && !isHiding)
+            if (/*UIManager.HasInstance && */!isHiding)
             {
-                UIManager.Instance.ShowScreen<FinishLevel>(null, true);
+                //UIManager.Instance.ShowScreen<FinishLevel>(null, true);
+                GameManager.Instance.LoadScene("Game");
             }
         }
     }

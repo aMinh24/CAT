@@ -8,7 +8,7 @@ public class GameManager : BaseManager<GameManager>
     {
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.ShowScreen<MainMenu>(null,true);
+            UIManager.Instance.ShowScreen<StartGame>(null,true);
         }
     }
     public void LoadScene(string name)

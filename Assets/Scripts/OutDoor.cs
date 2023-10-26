@@ -8,10 +8,7 @@ public class OutDoor : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (UIManager.HasInstance)
-            {
-                UIManager.Instance.ShowScreen<FinishLevel>(null, true);
-            }
+            GameManager.Instance.LoadScene("Game");
         }
     }
 }

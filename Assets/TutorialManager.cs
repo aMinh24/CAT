@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject box;
     private void Awake()
     {
-        NextTutorial();
+        //NextTutorial();
         transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
     }
     public void NextTutorial()
@@ -51,7 +51,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log(curTutorial);
         curTutorial++;
     }
-    public void CancelCase(int? i)
+    public void CancelCase(int i)
     {
         switch (i)
         {
