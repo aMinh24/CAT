@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.esotericsoftware.spine.urp-shaders": {
+      "version": "file:C:/Users/Admin/Downloads/com.esotericsoftware.spine.urp-shaders-3.8-2019.3",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "7.1.5"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "5.2.7",
       "depth": 0,

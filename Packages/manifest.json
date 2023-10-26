@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.esotericsoftware.spine.urp-shaders": "file:C:/Users/Admin/Downloads/com.esotericsoftware.spine.urp-shaders-3.8-2019.3",
     "com.unity.2d.animation": "5.2.7",
     "com.unity.2d.psdimporter": "4.3.1",
     "com.unity.2d.spriteshape": "5.3.0",

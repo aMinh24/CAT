@@ -20,6 +20,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] tutorials = new GameObject[3];
     public GameObject cat;
     public GameObject box;
+    public BoxCollider2D button;
     private void Awake()
     {
         //NextTutorial();
@@ -64,6 +65,7 @@ public class TutorialManager : MonoBehaviour
                     virtualCamera.LookAt = cat.transform;
                     virtualCamera.Follow = cat.transform;
                     DOTween.To(() => group.m_Targets[1].weight, x => group.m_Targets[1].weight = x, 0f, 1f).SetEase(Ease.Linear);
+                    button.enabled = true;
                     break;
                 }
             case 5:
