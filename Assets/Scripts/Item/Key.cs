@@ -5,6 +5,7 @@ using UnityEngine;
 public class Key : InteractItem
 {
     private Collider2D collider;
+    public GameObject txt;
     private void Start()
     {
         collider = GetComponent<Collider2D>();
@@ -14,6 +15,7 @@ public class Key : InteractItem
     {
         if (data is GameObject obj)
         {
+            txt.SetActive(true);
             transform.SetParent(obj.transform);
             collider.enabled = false;
         }

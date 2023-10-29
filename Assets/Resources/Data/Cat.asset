@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Cat
   m_EditorClassIdentifier: 
   jumpHeight: 15
-  speed: 5
-  speedJump: 7
+  speed: 6
+  speedJump: 10
   speedClimb: 5
   speedSlide: 0.5
   acceleration: 2

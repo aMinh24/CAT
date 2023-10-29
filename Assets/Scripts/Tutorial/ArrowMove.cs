@@ -12,7 +12,7 @@ public class ArrowMove : MonoBehaviour
     private void MoveArrow(int i = -1)
     {
         Sequence sq = DOTween.Sequence();
-        sq.Append(transform.DOLocalMoveY(-2.965f+0.015f * i, 0.3f));
+        sq.Append(transform.DOLocalMoveY(-0.163f + 0.015f * i, 0.3f));
         sq.OnComplete(() =>
         {
             i = -i;

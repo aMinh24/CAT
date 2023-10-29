@@ -19,7 +19,9 @@ public class TutorialManager : MonoBehaviour
     private int curTutorial = 0;
     public GameObject[] tutorials = new GameObject[3];
     public GameObject cat;
-    public GameObject box;
+    public GameObject txtJumpHere;
+    public Rigidbody2D Box;
+    public GameObject[] arrows;
     public BoxCollider2D button;
     private void Awake()
     {
@@ -52,13 +54,32 @@ public class TutorialManager : MonoBehaviour
         Debug.Log(curTutorial);
         curTutorial++;
     }
+    public void NextTutorial(int n)
+    {
+        switch (n)
+        {
+            case 0:
+                {
+                    NextTutorial();
+                    break;
+                }
+            case 1:
+                {
+                    txtJumpHere.SetActive(false);
+                    arrows[0].SetActive(false);
+                    arrows[1].SetActive(true);
+                    Box.constraints = RigidbodyConstraints2D.None;
+                    break;
+                }
+        }
+    }
     public void CancelCase(int i)
     {
         switch (i)
         {
             case 1:
                 {
-                    box.gameObject.SetActive(true); break;
+                    txtJumpHere.gameObject.SetActive(true); break;
                 }
             case 3:
                 {
@@ -68,9 +89,14 @@ public class TutorialManager : MonoBehaviour
                     button.enabled = true;
                     break;
                 }
-            case 5:
+                case 4:
                 {
-                    tutorials[5].SetActive(false );
+                    Sequence sq = DOTween.Sequence();
+                    sq.AppendInterval(10);
+                    sq.OnComplete(() =>
+                    {
+                        tutorials[4].SetActive(false);
+                    });
                     break;
                 }
         }
