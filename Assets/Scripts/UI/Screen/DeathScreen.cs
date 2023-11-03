@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishLevel : BaseScreen
+public class DeathScreen : BaseScreen
 {
     public override void Hide()
     {
@@ -20,11 +20,8 @@ public class FinishLevel : BaseScreen
     {
         base.Show(data);
     }
-    public void OnReturnButton()
+    public void PlayAgain()
     {
-        if (GameManager.HasInstance)
-        {
-            GameManager.Instance.LoadScene("Game");
-        }
+        GameManager.Instance.LoadScene("Game");
     }
 }

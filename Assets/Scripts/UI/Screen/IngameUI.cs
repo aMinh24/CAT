@@ -70,7 +70,6 @@ public class IngameUI : BaseScreen
             }                   
             tutorial[i].SetActive(true);
             
-            Debug.Log("show" + i);
         }
     }
     public void OnInteractButton()

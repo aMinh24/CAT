@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pot
   - Redzone
+  - DoorOut
   layers:
   - Default
   - TransparentFX

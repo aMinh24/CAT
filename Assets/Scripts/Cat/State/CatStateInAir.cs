@@ -43,6 +43,10 @@ public class CatStateInAir : CatState
         if (cat.IsGround())
         {
             cat.fallParticle.Play();
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySE("CatLanding");
+            }
             cat.stateMachine.ChangeState(CatStateID.Idle);
         }
     }

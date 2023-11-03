@@ -32,6 +32,10 @@ public class CatController : MonoBehaviour
     public AnimationController controller;
     public ParticleSystem dustParticle;
     public ParticleSystem fallParticle;
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,7 +77,9 @@ public class CatController : MonoBehaviour
     #region condition
     public bool IsGround()
     {
-        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.02f, jumpableGround);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f,jumpableGround);
+        
+        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.05f, jumpableGround) && hit;
     }
     public bool IsClimbing()
     {

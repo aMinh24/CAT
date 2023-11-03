@@ -19,5 +19,6 @@ public enum CatStateID
 }
 public enum EventID
 {
-    Tutorial
+    Tutorial,
+    StopAudio
 }

@@ -10,6 +10,10 @@ public class cabinet : InteractItem
     public GameObject change;
     public override void Interact(object data)
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySE("Drawer");
+        }
         transform.DOMove(new Vector3(transform.position.x, transform.position.y-0.1f, transform.position.z-0.04f),0.2f);
         col.enabled = false;
         ground.enabled = true;

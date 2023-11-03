@@ -51,7 +51,6 @@ public class TutorialManager : MonoBehaviour
             tutorials[curTutorial].SetActive(true);
         }
         this.Broadcast(EventID.Tutorial, curTutorial);
-        Debug.Log(curTutorial);
         curTutorial++;
     }
     public void NextTutorial(int n)

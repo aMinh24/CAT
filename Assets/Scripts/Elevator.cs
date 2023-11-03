@@ -19,6 +19,10 @@ public class Elevator : MonoBehaviour
     public void UseEle()
     {
         cat.transform.SetParent(this.transform);
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySE("Elevator");
+        }
         curFl= (curFl+1)%2;
         doors[0].enabled = true; doors[1].enabled = true;
         doors[2].enabled = false;
@@ -43,6 +47,10 @@ public class Elevator : MonoBehaviour
                 doors[2].enabled = true;
             }
             isMoving = false;
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySE("ElevatorBell");
+            }
             buttonColor.color = Color.green;
             cat.transform.SetParent(null);
         });

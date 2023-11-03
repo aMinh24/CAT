@@ -13,10 +13,29 @@ public class CatHide : MonoBehaviour
         }
         if (collision.CompareTag("Redzone"))
         {
-            if (/*UIManager.HasInstance && */!isHiding)
+            if (UIManager.HasInstance && !isHiding)
             {
-                //UIManager.Instance.ShowScreen<FinishLevel>(null, true);
-                GameManager.Instance.LoadScene("Game");
+                
+                UIManager.Instance.ShowScreen<DeathScreen>(null, true);
+            }
+        }
+        if (collision.CompareTag("DoorOut"))
+        {
+            if (UIManager.HasInstance)
+            {
+                Debug.Log("out");
+                UIManager.Instance.ShowScreen<FinishLevel>(null, true);
+            }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Redzone"))
+        {
+            if (UIManager.HasInstance && !isHiding)
+            {
+
+                UIManager.Instance.ShowScreen<DeathScreen>(null, true);
             }
         }
     }
