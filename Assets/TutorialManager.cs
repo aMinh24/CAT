@@ -13,9 +13,7 @@ public class TutorialManager : MonoBehaviour
             }
             return TutorialManager.instance; } }
 
-    public CinemachineTargetGroup group;
-    public CinemachineVirtualCamera virtualCamera;
-    private CinemachineTransposer transposer;
+    public CinemachineVirtualCamera camEle;
     private int curTutorial = 0;
     public GameObject[] tutorials = new GameObject[3];
     public GameObject cat;
@@ -26,7 +24,6 @@ public class TutorialManager : MonoBehaviour
     private void Awake()
     {
         //NextTutorial();
-        transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
     }
     public void NextTutorial()
     {
@@ -34,10 +31,7 @@ public class TutorialManager : MonoBehaviour
         {
             case 3:
                 {
-                    virtualCamera.LookAt = group.gameObject.transform;
-                    virtualCamera.Follow = group.gameObject.transform;
-                    DOTween.To(() => group.m_Targets[1].weight, x => group.m_Targets[1].weight = x, 1f, 1f).SetEase(Ease.Linear);
-                    //DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x,Vector3.zero, 0.2f).SetEase(Ease.Linear);
+                    camEle.Priority = 20;
                     break;
                 }
         }
@@ -82,9 +76,7 @@ public class TutorialManager : MonoBehaviour
                 }
             case 3:
                 {
-                    virtualCamera.LookAt = cat.transform;
-                    virtualCamera.Follow = cat.transform;
-                    DOTween.To(() => group.m_Targets[1].weight, x => group.m_Targets[1].weight = x, 0f, 1f).SetEase(Ease.Linear);
+                    camEle.Priority = 0;
                     button.enabled = true;
                     break;
                 }
@@ -99,7 +91,5 @@ public class TutorialManager : MonoBehaviour
                     break;
                 }
         }
-        
-        //DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, new Vector3(0,2,0), 0.2f).SetEase(Ease.Linear);
     }
 }

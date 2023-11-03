@@ -32,8 +32,10 @@ public class CatController : MonoBehaviour
     public AnimationController controller;
     public ParticleSystem dustParticle;
     public ParticleSystem fallParticle;
+    public bool freezing;
     private void Awake()
     {
+        freezing = false;
         Time.timeScale = 1.0f;
     }
     void Start()
@@ -60,7 +62,11 @@ public class CatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputMove = input.actions["Move"].ReadValue<Vector2>().normalized;
+        if(freezing) { inputMove = Vector2.zero; }
+        else
+        {
+            inputMove = input.actions["Move"].ReadValue<Vector2>().normalized;
+        }
         if (stateMachine != null)
         {
             stateMachine.UpdateInState();

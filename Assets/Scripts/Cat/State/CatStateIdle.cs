@@ -19,7 +19,7 @@ public class CatStateIdle : CatState
 
     public void FixedUpdateInState(CatController cat)
     {
-        cat.rb.velocity = Vector3.zero;
+        
     }
 
 

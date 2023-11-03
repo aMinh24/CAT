@@ -4,8 +4,13 @@ using UnityEngine;
 public class CatStateMove : CatState
 {
     private float x = 0;
+    private float timeCoyote = 0;
     public void Enter(CatController cat)
     {
+        if (DataManager.HasInstance)
+        {
+            timeCoyote = DataManager.Instance.Config.timeCoyote;
+        }
         cat.rb.sharedMaterial = null;
         cat.dustParticle.Play();
     }
@@ -21,7 +26,6 @@ public class CatStateMove : CatState
 
     public void FixedUpdateInState(CatController cat)
     {
-        
         x = cat.inputMove.x * cat.speed;
         cat.rb.velocity = new Vector2(x, cat.rb.velocity.y);
     }
@@ -39,6 +43,7 @@ public class CatStateMove : CatState
         }
         if (cat.inputMove.x == 0)
         {
+            cat.rb.velocity = Vector3.zero;
             cat.stateMachine.ChangeState(CatStateID.Idle);
         }
         if (cat.isJumping)
@@ -47,7 +52,15 @@ public class CatStateMove : CatState
         }
         if (cat.rb.velocity.y < -0.1f)
         {
-            cat.stateMachine.ChangeState(CatStateID.InAir);
+            if (timeCoyote >= 0)
+            {
+                timeCoyote -=Time.deltaTime;
+            }
+            else
+            {
+                cat.stateMachine.ChangeState(CatStateID.InAir);
+            }
+            
         }
     }
 }

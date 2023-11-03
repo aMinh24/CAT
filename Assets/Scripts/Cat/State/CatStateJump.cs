@@ -8,7 +8,7 @@ public class CatStateJump : CatState
     public void Enter(CatController cat)
     {
         cat.rb.sharedMaterial = DataManager.Instance.Config.slip;
-        cat.rb.velocity = new Vector2(cat.rb.velocity.x * (cat.speedJump / 10), cat.rb.velocity.y + cat.jumpHeight);
+        cat.rb.velocity = new Vector2(cat.rb.velocity.x * (cat.speedJump / 10), (cat.rb.velocity.y + cat.jumpHeight)<cat.jumpHeight?cat.jumpHeight: (cat.rb.velocity.y + cat.jumpHeight));
         
     }
     public void Exit(CatController cat)

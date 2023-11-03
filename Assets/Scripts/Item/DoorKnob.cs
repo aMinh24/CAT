@@ -35,7 +35,6 @@ public class DoorKnob : InteractItem
         if (first)
         {
             TutorialManager.Instance.NextTutorial(); //3
-            Debug.Log("dor 3");
             first = false;
         }
     }

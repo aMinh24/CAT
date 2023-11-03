@@ -18,5 +18,6 @@ MonoBehaviour:
   speedClimb: 5
   speedSlide: 0.5
   acceleration: 2
+  timeCoyote: 0.1
   gravity: 1
   slip: {fileID: 6200000, guid: 9553bcfb76bce1d4d8c9b51c56e18982, type: 2}

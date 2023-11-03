@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.UI;
 using EnTouch = UnityEngine.InputSystem.EnhancedTouch;
 
@@ -18,6 +19,7 @@ public class IngameUI : BaseScreen
     private int curTutorial = 0;
     public GameObject tip;
     public bool isShowTutorial = false;
+    public OnScreenStick onScreenStick;
     public override void Hide()
     {
         base.Hide();
@@ -55,14 +57,21 @@ public class IngameUI : BaseScreen
         base.Show(data);
         
     }
+    private IEnumerator freezeScreen()
+    {
+        cat.freezing = true;
+        yield return new WaitForSeconds(CONST.TIME_FREEZING);
+        cat.freezing = false;
+        tip.SetActive(true);
+    }
     public void ShowTutorial(object data)
     {
 
         if (data is int i)
         {
-            tip.SetActive(true);
             curTutorial = i;
             isShowTutorial = true;
+            StartCoroutine(freezeScreen());
             if (i >= tutorial.Length) return;
             if (i == 1)
             {
@@ -74,15 +83,16 @@ public class IngameUI : BaseScreen
     }
     public void OnInteractButton()
     {
-        if (interact != null)
+        if (interact != null&& !cat.freezing)
         {
             inter.OnButtonInteract();
         }
     }
     public void OnJumpButton()
     {
-        if (cat != null)
-        {
+
+        if (cat != null&&!cat.freezing)
+        {    
             cat.isJumping = true;
         }
     }
@@ -96,6 +106,7 @@ public class IngameUI : BaseScreen
     }
     private void HandleFingerDown(Finger TouchedFinger)
     {
+        if (cat.freezing) { return; }
         if (isShowTutorial)
         {           
             TutorialManager.Instance.CancelCase(curTutorial);                

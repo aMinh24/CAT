@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4942c57e7c1de3145827832030535478
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - LITTLE NIGHTMARE
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7548a121790a3844a8ee1fc1b3aa7c8f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
