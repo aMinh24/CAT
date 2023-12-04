@@ -35,11 +35,11 @@ public class CatStateMove : CatState
     {
         if (cat.inputMove.x > 0)
         {
-            cat.transform.rotation = Quaternion.Euler(0, 0, 0);
+            cat.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (cat.inputMove.x < 0)
         {
-            cat.transform.rotation = Quaternion.Euler(0, 180, 0);
+            cat.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         if (cat.inputMove.x == 0)
         {

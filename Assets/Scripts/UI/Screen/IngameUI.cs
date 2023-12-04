@@ -17,9 +17,11 @@ public class IngameUI : BaseScreen
     private CatController cat;
     public GameObject[] tutorial = new GameObject[3];
     private int curTutorial = 0;
-    public GameObject tip;
+    public GameObject[] tip;
     public bool isShowTutorial = false;
     public OnScreenStick onScreenStick;
+    public bool checkInteractButton;
+    public bool lockInteractButton;                       
     public override void Hide()
     {
         base.Hide();
@@ -33,6 +35,8 @@ public class IngameUI : BaseScreen
     public override void Init()
     {
         base.Init();
+        checkInteractButton = false;
+        lockInteractButton = false;
         inter = FindAnyObjectByType<Interact>();
         cat = inter.GetComponent<CatController>();
         inter.interact = interact;
@@ -60,15 +64,23 @@ public class IngameUI : BaseScreen
     private IEnumerator freezeScreen()
     {
         cat.freezing = true;
+        lockInteractButton = true;
         yield return new WaitForSeconds(CONST.TIME_FREEZING);
-        cat.freezing = false;
-        tip.SetActive(true);
+        
+        if (!checkInteractButton)
+        {
+            cat.freezing = false;
+            tip[0].SetActive(true);
+        }
+        else tip[1].SetActive(true);
+        lockInteractButton = false;
     }
     public void ShowTutorial(object data)
     {
 
         if (data is int i)
         {
+            if (i > CONST.COUNT_TUTORIALS_UI) return;
             curTutorial = i;
             isShowTutorial = true;
             StartCoroutine(freezeScreen());
@@ -76,17 +88,33 @@ public class IngameUI : BaseScreen
             if (i == 1)
             {
                 jumpButton.SetActive(true);
-            }                   
+            }
+            else if(i == 2)
+            {
+                checkInteractButton = true;
+            }
             tutorial[i].SetActive(true);
             
         }
     }
     public void OnInteractButton()
     {
-        if (interact != null&& !cat.freezing)
+        if (interact != null&& !lockInteractButton)
         {
+            if (checkInteractButton)
+            {
+                TutorialManager.Instance.CancelCase(curTutorial);
+                tip[1].SetActive(false);
+                isShowTutorial = false;
+                if (curTutorial < tutorial.Length)
+                {
+                    tutorial[curTutorial].SetActive(false);
+                }
+                checkInteractButton =false;
+            }
             inter.OnButtonInteract();
         }
+        
     }
     public void OnJumpButton()
     {
@@ -107,10 +135,10 @@ public class IngameUI : BaseScreen
     private void HandleFingerDown(Finger TouchedFinger)
     {
         if (cat.freezing) { return; }
-        if (isShowTutorial)
+        if (isShowTutorial && !checkInteractButton)
         {           
             TutorialManager.Instance.CancelCase(curTutorial);                
-            tip.SetActive(false);
+            tip[0].SetActive(false);
             isShowTutorial=false;
             if (curTutorial <tutorial.Length)
             {

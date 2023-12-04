@@ -25,11 +25,11 @@ public class CatStateJump : CatState
         x = cat.inputMove.x * cat.speed;
         if (x > 0)
         {
-            cat.transform.rotation = Quaternion.Euler(0, 0, 0);
+            cat.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (x < 0)
         {
-            cat.transform.rotation = Quaternion.Euler(0, 180, 0);
+            cat.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         cat.rb.velocity = new Vector2(x * cat.speedJump / 10, cat.rb.velocity.y);
     }
