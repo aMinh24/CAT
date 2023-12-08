@@ -120,6 +120,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -218,6 +219,18 @@ TextureImporter:
     crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -905,6 +918,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tuong (2) (1)_0: 1581797803131343414
+      tuong (2) (1)_1: 3139887930462911228
+      tuong (2) (1)_10: 4718519167545537858
+      tuong (2) (1)_11: 4006267688146745502
+      tuong (2) (1)_12: 9127011104772624301
+      tuong (2) (1)_13: 5773136579733908219
+      tuong (2) (1)_14: -6492897441322789905
+      tuong (2) (1)_15: -1249456093095354195
+      tuong (2) (1)_16: -6240369947847680107
+      tuong (2) (1)_17: 8473353436418234890
+      tuong (2) (1)_18: 6906777421145073976
+      tuong (2) (1)_19: -5894608519509412115
+      tuong (2) (1)_2: 6506095607349561490
+      tuong (2) (1)_20: -8263995721260243995
+      tuong (2) (1)_21: -1241346175931075990
+      tuong (2) (1)_22: 4961301993957859661
+      tuong (2) (1)_23: 5474912053966488125
+      tuong (2) (1)_24: 6947258416529792148
+      tuong (2) (1)_25: 6756313376962987683
+      tuong (2) (1)_26: 1258496812743910253
+      tuong (2) (1)_27: -1936232134968361461
+      tuong (2) (1)_28: 4695522027339927448
+      tuong (2) (1)_29: 7990658732538614685
+      tuong (2) (1)_3: 8558788744195108586
+      tuong (2) (1)_30: -2042012285113366826
+      tuong (2) (1)_31: 104142768042678932
+      tuong (2) (1)_4: 8543294231195239193
+      tuong (2) (1)_5: -7412149022564101284
+      tuong (2) (1)_6: -4895350967130862673
+      tuong (2) (1)_7: -1998105467183021052
+      tuong (2) (1)_8: -4780449877110895670
+      tuong (2) (1)_9: 4964726375736484381
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

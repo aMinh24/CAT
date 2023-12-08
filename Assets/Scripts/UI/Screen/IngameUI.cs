@@ -19,7 +19,7 @@ public class IngameUI : BaseScreen
     private int curTutorial = 0;
     public GameObject[] tip;
     public bool isShowTutorial = false;
-    public OnScreenStick onScreenStick;
+    //public OnScreenStick onScreenStick;
     public bool checkInteractButton;
     public bool lockInteractButton;                       
     public override void Hide()

@@ -168,6 +168,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -258,6 +259,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1289,6 +1302,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      vet nut cua tuong_0: 7414425902753315345
+      vet nut cua tuong_1: -3412551690254236783
+      vet nut cua tuong_10: 8451493237210305329
+      vet nut cua tuong_11: 2741975938549660663
+      vet nut cua tuong_12: -3587663679892652240
+      vet nut cua tuong_13: 87405058111872270
+      vet nut cua tuong_14: -3995158991544026285
+      vet nut cua tuong_15: 2818474722094175623
+      vet nut cua tuong_16: 6471256907493990786
+      vet nut cua tuong_17: -4924554218273389534
+      vet nut cua tuong_18: 944657488632017185
+      vet nut cua tuong_19: 3541837540994234292
+      vet nut cua tuong_2: -7993645940485010431
+      vet nut cua tuong_20: -1858112250672926558
+      vet nut cua tuong_21: -7990226735444634191
+      vet nut cua tuong_22: 752760908749196510
+      vet nut cua tuong_23: -8741193961990089755
+      vet nut cua tuong_24: 6764005589861549128
+      vet nut cua tuong_25: 612885043535457933
+      vet nut cua tuong_26: 8908438007745683014
+      vet nut cua tuong_27: 3413262918795142021
+      vet nut cua tuong_28: -7242878879654636235
+      vet nut cua tuong_29: -5920455429753284134
+      vet nut cua tuong_3: 422206326849366442
+      vet nut cua tuong_30: -8407317094330895971
+      vet nut cua tuong_31: -342887258366329512
+      vet nut cua tuong_32: -1117388720455554069
+      vet nut cua tuong_33: 5894983236099193232
+      vet nut cua tuong_34: 5576898092038018590
+      vet nut cua tuong_35: -7231305344715471796
+      vet nut cua tuong_36: -478354731320727056
+      vet nut cua tuong_37: -5512238924457343837
+      vet nut cua tuong_38: -8850286376953993530
+      vet nut cua tuong_39: -6462218830754116134
+      vet nut cua tuong_4: -8135569554292384098
+      vet nut cua tuong_40: 2531727424566822304
+      vet nut cua tuong_41: 2779947004398899125
+      vet nut cua tuong_42: -6548536370585295136
+      vet nut cua tuong_43: 3126843220250744547
+      vet nut cua tuong_44: 7731817469456044144
+      vet nut cua tuong_45: 6189485032977764143
+      vet nut cua tuong_46: -3491998634708695476
+      vet nut cua tuong_47: 8747151236429432131
+      vet nut cua tuong_5: 6037212307480442646
+      vet nut cua tuong_6: 6024309844011514423
+      vet nut cua tuong_7: -6082224476029557036
+      vet nut cua tuong_8: 2812812575568256721
+      vet nut cua tuong_9: 4913198209148212495
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

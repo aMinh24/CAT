@@ -120,6 +120,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -218,6 +219,18 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -905,6 +918,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tuong_16bit_0: -6686805400511812579
+      tuong_16bit_1: 3440577771959107274
+      tuong_16bit_10: -4301948022758939661
+      tuong_16bit_11: -6667759739362550167
+      tuong_16bit_12: 3215819305183797346
+      tuong_16bit_13: -6578912277619473583
+      tuong_16bit_14: -4255805170654500805
+      tuong_16bit_15: 934517015364858062
+      tuong_16bit_16: -124238389172310881
+      tuong_16bit_17: 6969219797216522513
+      tuong_16bit_18: -7414779932211498845
+      tuong_16bit_19: -5476134359525038838
+      tuong_16bit_2: 4995676598041938199
+      tuong_16bit_20: -3871272071991089649
+      tuong_16bit_21: 1588282323391806501
+      tuong_16bit_22: 4074808435635298438
+      tuong_16bit_23: 4757361619850682370
+      tuong_16bit_24: -5464801569872995240
+      tuong_16bit_25: -3736895760760740383
+      tuong_16bit_26: 4726448755410415056
+      tuong_16bit_27: -4980327839792450659
+      tuong_16bit_28: -10962828569346848
+      tuong_16bit_29: -6303220985811209818
+      tuong_16bit_3: -5899712107411492234
+      tuong_16bit_30: -137789209697923672
+      tuong_16bit_31: -4944746429953049037
+      tuong_16bit_4: 3990501184288774983
+      tuong_16bit_5: -3061105588858658616
+      tuong_16bit_6: 293284197494551066
+      tuong_16bit_7: 7895430176297109236
+      tuong_16bit_8: 4620569181169706209
+      tuong_16bit_9: 6176609320939276383
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

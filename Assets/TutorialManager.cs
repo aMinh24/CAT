@@ -6,12 +6,17 @@ using DG.Tweening;
 public class TutorialManager : MonoBehaviour
 {
     private static TutorialManager instance;
-    public static TutorialManager Instance { get { 
+    public static TutorialManager Instance
+    {
+        get
+        {
             if (instance == null)
             {
                 instance = FindAnyObjectByType<TutorialManager>();
             }
-            return TutorialManager.instance; } }
+            return TutorialManager.instance;
+        }
+    }
 
     public CinemachineVirtualCamera camEle;
     private int curTutorial = 0;
@@ -21,6 +26,7 @@ public class TutorialManager : MonoBehaviour
     public Rigidbody2D Box;
     public GameObject[] arrows;
     public BoxCollider2D button;
+    public bool tuto;
     private void Awake()
     {
         //NextTutorial();
@@ -68,11 +74,13 @@ public class TutorialManager : MonoBehaviour
     }
     public void CancelCase(int i)
     {
+        if (tuto) return;
         switch (i)
         {
             case 1:
                 {
-                    txtJumpHere.gameObject.SetActive(true); break;
+                    if (txtJumpHere != null)
+                        txtJumpHere.gameObject.SetActive(true); break;
                 }
             case 3:
                 {
@@ -80,7 +88,7 @@ public class TutorialManager : MonoBehaviour
                     button.enabled = true;
                     break;
                 }
-                case 4:
+            case 4:
                 {
                     Sequence sq = DOTween.Sequence();
                     sq.AppendInterval(10);

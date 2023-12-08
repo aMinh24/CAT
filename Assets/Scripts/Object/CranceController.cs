@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class CranceController : MonoBehaviour
 {
+    public float TimeStep;
     public Transform[] levers;
     public Transform platform;
     public Transform[] points;
@@ -11,20 +12,21 @@ public class CranceController : MonoBehaviour
     private bool direction = false; //false go down - true go up
     public void nextStepLevers()
     {
-        if (curpoint == 0 && !direction)
+        Debug.Log("next");
+        if (curpoint == 0 && direction)
         {
             direction = !direction;
         }
-        if (curpoint == 3 && direction)
+        if (curpoint == 2 && !direction)
         {
             direction = !direction;
         }
         if (direction)
         {
-            curpoint++;
+            curpoint--;
         }
-        else curpoint--;
-        platform.DOMove(points[curpoint].position, 0.3f);
+        else curpoint++;
+        platform.DOMove(points[curpoint].position, TimeStep);
         float angle = 0;
         switch (curpoint)
         {
@@ -46,7 +48,7 @@ public class CranceController : MonoBehaviour
         }
         foreach (Transform l in levers)
         {
-            l.DOLocalRotate(new Vector3(0, angle, 0), 0.2f);
+            l.DOLocalRotate(new Vector3(0, 0, angle), TimeStep);
         }
 
     }

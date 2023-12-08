@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -114,6 +115,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
@@ -683,6 +696,33 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      mang nhen_0: -5742963689153413318
+      mang nhen_1: -6839887095651203955
+      mang nhen_10: -2289610864381863311
+      mang nhen_11: -7331759105908897747
+      mang nhen_12: 4441656240281126275
+      mang nhen_13: 1902055172121779637
+      mang nhen_14: 6164135817974817634
+      mang nhen_15: -9039662394905492095
+      mang nhen_16: 3164765388220781451
+      mang nhen_17: 4603213746271334258
+      mang nhen_18: 4590135989229529563
+      mang nhen_19: -4728939782575416650
+      mang nhen_2: -3038564769081914598
+      mang nhen_20: -7183145386537951156
+      mang nhen_21: 1834002304176007554
+      mang nhen_22: 8928186905618013678
+      mang nhen_23: 8482771492497197932
+      mang nhen_24: -5201318591818347865
+      mang nhen_25: -2358198305562213034
+      mang nhen_3: 7774873075910919406
+      mang nhen_4: 827285323463578133
+      mang nhen_5: -918691838724034111
+      mang nhen_6: 917708327169794940
+      mang nhen_7: -6641407569125942622
+      mang nhen_8: 5226462799032692206
+      mang nhen_9: 4303756194546965599
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
