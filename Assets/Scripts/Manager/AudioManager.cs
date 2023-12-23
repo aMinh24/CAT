@@ -33,8 +33,8 @@ public class AudioManager : BaseManager<AudioManager>
 
     private void Start()
     {
-        this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.2f);
-        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.2f);
+        this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
+        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
         this.AttachSESource.volume = PlayerPrefs.GetFloat("SE_VOLUME_KEY", 1f);
         if (!this.AttachBGMSource.isPlaying)
         {
@@ -100,7 +100,7 @@ public class AudioManager : BaseManager<AudioManager>
     {
         this.nextGTName = "GTHEME" + this.currentGT.ToString();
         this.AttachGTSource.clip = this.gtDic[this.nextGTName];
-        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.2f);
+        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
         this.AttachGTSource.Play();
         this.currentGT = (this.currentGT + 1) % this.gtDic.Count;
         this.isPlayingGT = true;
@@ -149,7 +149,7 @@ public class AudioManager : BaseManager<AudioManager>
         if (this.AttachBGMSource.volume <= 0f)
         {
             this.AttachBGMSource.Stop();
-            this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.2f);
+            this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
             this.isFadeOut = false;
             if (!string.IsNullOrEmpty(this.nextBGMName))
             {

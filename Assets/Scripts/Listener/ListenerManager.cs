@@ -61,6 +61,7 @@ public static class ListenerManagerExtension
     {
         if (ListenerManager.HasInstance)
         {
+            //Debug.Log(id.ToString());
             ListenerManager.Instance.Broadcast(id, null);
         }
     }

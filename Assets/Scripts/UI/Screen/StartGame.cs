@@ -20,14 +20,36 @@ public class StartGame : BaseScreen
 
     public override void Show(object data)
     {
-        startGame();
+        if (data is bool b)
+        {
+            if (b) startGame();
+            else restartGame();
+        }
+        
         base.Show(data);
+    }
+    private void restartGame()
+    {
+        rect.DOScale(Vector3.one,0f);
+        Sequence sq= DOTween.Sequence();
+        sq.Join(bg.DOFade(1f, 0.5f));
+        sq.Join(img.DOFade(1f, 0.5f));
+        sq.OnComplete(() =>
+        {
+            Sequence sqq = DOTween.Sequence();
+            sqq.Join(bg.DOFade(0f, 0.5f));
+            sqq.Join(img.DOFade(0f, 0.5f));
+            sqq.OnComplete(() =>
+            {
+                UIManager.Instance.ShowScreen<IngameUI>(null, true);
+            });
+        });
     }
     private void startGame()
     {
         Sequence sq = DOTween.Sequence();
         sq.Join(rect.DOScale(new Vector3(1, 1, 0), 1f));
-        sq.Join(rect.DORotate(new Vector3(0, 0, 360), 1f, RotateMode.FastBeyond360));
+        sq.Join(rect.DORotate(new Vector3(0, 0, -360), 1f, RotateMode.FastBeyond360));
         sq.AppendInterval(1f);
         sq.OnComplete(() =>
         {

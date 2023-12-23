@@ -10,15 +10,30 @@ public class Elevator : MonoBehaviour
     public Collider2D[] doors;
     public bool isMoving = false;
     public SpriteRenderer buttonColor;
-    public GameObject cat;
-    public bool first;
+
     private void Start()
     {
         transform.position = floor[curFl].position;
+        this.Register(EventID.LoadData, loadGame);
+        this.Register(EventID.saveData, saveGame);
     }
-    public void UseEle()
+    public void loadGame(object? data)
     {
-        cat.transform.SetParent(this.transform);
+        if (DataManager.HasInstance)
+        {
+            curFl = DataManager.Instance.dataPlayerSO.curElevator;
+        }
+    }
+    public void saveGame(object? data)
+    {
+        if (DataManager.HasInstance)
+        {
+            DataManager.Instance.dataPlayerSO.curElevator = curFl;
+        }
+    }
+    public void UseEle(GameObject o)
+    {
+        o.transform.SetParent(this.transform);
         if (AudioManager.HasInstance)
         {
             AudioManager.Instance.PlaySE("Elevator");
@@ -32,11 +47,6 @@ public class Elevator : MonoBehaviour
         sq.Append(transform.DOMove(floor[curFl].position,3f));
         sq.OnComplete(() =>
         {
-            if (first)
-            {
-                TutorialManager.Instance.NextTutorial();
-                first = false;
-            }
             if (curFl == 1)
             {
                 doors[0].enabled = false; doors[1].enabled = true;
@@ -52,15 +62,8 @@ public class Elevator : MonoBehaviour
                 AudioManager.Instance.PlaySE("ElevatorBell");
             }
             buttonColor.color = Color.green;
-            cat.transform.SetParent(null);
+            o.transform.SetParent(null);
         });
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            cat = collision.gameObject;
-        }
     }
 }

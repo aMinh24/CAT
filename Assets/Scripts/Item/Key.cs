@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Key : InteractItem
 {
-    private Collider2D collider;
-    public GameObject txt;
-    private void Start()
-    {
-        collider = GetComponent<Collider2D>();
-        nameItem = Items.Key;
-    }
-    public override void Interact(object? data)
+    //private Collider2D collider;
+
+
+    public override void Interact(object? data, bool forceInteract = false)
     {
         if (data is GameObject obj)
         {
-            txt.SetActive(true);
-            transform.SetParent(obj.transform);
-            collider.enabled = false;
+            //txt.SetActive(true);
+            //transform.SetParent(obj.transform);
+            //collider.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 

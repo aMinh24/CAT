@@ -5,7 +5,7 @@ using UnityEngine;
 public class JoystickCrance : InteractItem
 {
     public CranceController Controller;
-    public override void Interact(object data)
+    public override void Interact(object data, bool f)
     {
         Controller.nextStepLevers();
     }

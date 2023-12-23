@@ -27,10 +27,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] arrows;
     public BoxCollider2D button;
     public bool tuto;
-    private void Awake()
-    {
-        //NextTutorial();
-    }
+
     public void NextTutorial()
     {
         switch (curTutorial)

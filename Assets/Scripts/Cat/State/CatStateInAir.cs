@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,15 @@ public class CatStateInAir : CatState
 {
     public void Enter(CatController cat)
     {
+        //Vector3 eulerRotation = cat.transform.rotation.eulerAngles + new Vector3(0, 0, 30);
+        //cat.transform.DORotate(eulerRotation, 0.15f);
         cat.rb.sharedMaterial = DataManager.Instance.Config.slip;
     }
 
     public void Exit(CatController cat)
     {
+        //Vector3 eulerRotation = cat.transform.rotation.eulerAngles - new Vector3(0, 0, 15);
+        //cat.transform.DORotate(eulerRotation, 0.1f);
         cat.isJumping = false;
     }
 
@@ -31,6 +36,7 @@ public class CatStateInAir : CatState
         if (cat.inputMove.x > 0)
         {
             cat.transform.rotation = Quaternion.Euler(0, 180, 0);
+           
         }
         else if (cat.inputMove.x < 0)
         {

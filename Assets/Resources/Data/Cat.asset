@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0109a88126d0ceb46a01c36cc7c6696e, type: 3}
   m_Name: Cat
   m_EditorClassIdentifier: 
-  jumpHeight: 15
-  speed: 6
-  speedJump: 10
+  jumpHeight: 12
+  speed: 5
+  speedJump: 8
   speedClimb: 5
   speedSlide: 0.5
   acceleration: 2

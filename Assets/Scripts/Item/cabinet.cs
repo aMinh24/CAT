@@ -8,7 +8,7 @@ public class cabinet : InteractItem
     public BoxCollider2D ground;
     public GameObject init;
     public GameObject change;
-    public override void Interact(object data)
+    public override void Interact(object data, bool f)
     {
         if (AudioManager.HasInstance)
         {

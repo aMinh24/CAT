@@ -10,18 +10,22 @@ public class TelePoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+
+            if (end != null)
+            {
+                end.SetActive(true);
+            }
+            collision.gameObject.transform.position = point.position;
+            if (DataManager.HasInstance)
+            {
+                DataManager.Instance.dataPlayerSO.positionCat = point.position;
+            }
             if (start != null)
             {
                 start.SetActive(false);
             }
-            collision.gameObject.transform.position = point.position;
-            if (end != null)
-            {
-                end.SetActive(true);
-            }  
-            
-            
+
         }
-        
+
     }
 }

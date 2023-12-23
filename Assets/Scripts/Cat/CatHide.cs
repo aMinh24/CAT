@@ -13,11 +13,7 @@ public class CatHide : MonoBehaviour
         }
         if (collision.CompareTag("Redzone"))
         {
-            if (UIManager.HasInstance && !isHiding)
-            {
-                
-                UIManager.Instance.ShowScreen<DeathScreen>(null, true);
-            }
+            StartCoroutine(restartGame());
         }
         if (collision.CompareTag("DoorOut"))
         {
@@ -28,17 +24,28 @@ public class CatHide : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    IEnumerator restartGame()
     {
-        if (collision.CompareTag("Redzone"))
+        if (UIManager.HasInstance && !isHiding)
         {
-            if (UIManager.HasInstance && !isHiding)
-            {
-
-                UIManager.Instance.ShowScreen<DeathScreen>(null, true);
-            }
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            UIManager.Instance.ShowScreen<StartGame>(false, true);
+            yield return new WaitForSeconds(0.5f);
+            transform.position = DataManager.Instance.dataPlayerSO.positionCat;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Redzone"))
+    //    {
+    //        if (UIManager.HasInstance && !isHiding)
+    //        {
+
+    //            UIManager.Instance.ShowScreen<DeathScreen>(null, true);
+    //        }
+    //    }
+    //}
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Pot")) isHiding = false;

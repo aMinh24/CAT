@@ -56,6 +56,7 @@ public class CatController : MonoBehaviour
         stateMachine.RegisterState(new CatStateMove());
         stateMachine.RegisterState(new CatStateJump());
         stateMachine.RegisterState(new CatStateInAir());
+        stateMachine.RegisterState(new CatStateLanding());
         stateMachine.RegisterState(new CatStateClimbing());
         stateMachine.ChangeState(initState);
     }
@@ -85,6 +86,12 @@ public class CatController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f,jumpableGround);
         
+        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.05f, jumpableGround) && hit;
+    }
+    public bool IsLanding()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, jumpableGround);
+
         return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.05f, jumpableGround) && hit;
     }
     public bool IsClimbing()

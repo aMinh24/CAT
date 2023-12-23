@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class ElevatorButton : InteractItem
 {
-    public Collider2D col;
     public Elevator ele;
-    public override void Interact(object data)
+    public override void Interact(object data, bool f)
     {
         if (ele.isMoving)
         {
             return;
         }
-        ele.UseEle();
-        this.col.enabled = true;
+        if (data is GameObject o)
+        {
+            ele.UseEle(o);
+        }   
+
     }
 }

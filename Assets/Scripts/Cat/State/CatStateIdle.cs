@@ -33,5 +33,9 @@ public class CatStateIdle : CatState
         {
             cat.stateMachine.ChangeState(CatStateID.Jump);
         }
+        if (!cat.IsGround())
+        {
+            cat.stateMachine.ChangeState(CatStateID.InAir);
+        }
     }
 }

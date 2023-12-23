@@ -42,7 +42,7 @@ public class CatStateMachine
     // Update is called once per frame
     public void UpdateInState()
     {
-        Debug.Log(GetState(curState).ToString());
+        
         CatState state = GetState(curState);
         if (state != null)
         {

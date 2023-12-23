@@ -32,17 +32,17 @@ public class CranceController : MonoBehaviour
         {
             case 0:
                 {
-                    angle = -45f;
+                    angle = 90f;
                     break;
                 }
             case 1:
                 {
-                    angle = 0;
+                    angle = 45;
                     break;
                 }
             case 2:
                 {
-                    angle = 45;
+                    angle = 0;
                     break;
                 }
         }

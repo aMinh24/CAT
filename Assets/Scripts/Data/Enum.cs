@@ -7,7 +7,10 @@ public enum UIType {
 }
 public enum Items{
     None,
-    Key
+    KeyFirstDoor,
+    Key,
+    Crance,
+    OutFall,
 }
 public enum CatStateID
 {
@@ -15,10 +18,14 @@ public enum CatStateID
     Move,
     Jump,
     InAir,
+    Landing,
     Climbing
 }
 public enum EventID
 {
     Tutorial,
-    StopAudio
+    StopAudio,
+    LoadData,
+    saveData,
+    debug
 }

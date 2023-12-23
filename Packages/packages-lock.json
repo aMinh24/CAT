@@ -1,7 +1,15 @@
 {
   "dependencies": {
+    "com.esotericsoftware.spine.timeline": {
+      "version": "file:F:/Unity/com.esotericsoftware.spine.timeline-4.1",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.timeline": "1.2.10"
+      }
+    },
     "com.esotericsoftware.spine.urp-shaders": {
-      "version": "file:C:/Users/Admin/Downloads/com.esotericsoftware.spine.urp-shaders-4.1-Unity2019.3-2023-10-26/com.esotericsoftware.spine.urp-shaders-4.1-2019.1",
+      "version": "file:F:/Unity/com.esotericsoftware.spine.urp-shaders-4.1-2019.1",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -104,15 +112,6 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.ide.rider": {
-      "version": "3.0.21",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ext.nunit": "1.0.6"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {

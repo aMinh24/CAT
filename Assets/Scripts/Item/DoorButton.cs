@@ -6,7 +6,7 @@ public class DoorButton : InteractItem
 {
     public Transform door;
     private bool isOpen = false;
-    public override void Interact(object data)
+    public override void Interact(object data, bool f)
     {
         if (!isOpen)
         {
