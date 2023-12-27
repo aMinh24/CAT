@@ -29,3 +29,8 @@ public enum EventID
     saveData,
     debug
 }
+public enum BossStateID
+{
+    idle,
+    chasing,
+}

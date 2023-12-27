@@ -1,0 +1,14 @@
+skeleton.png
+size:522,367
+filter:Linear,Linear
+pma:true
+duoi
+bounds:402,201,164,118
+rotate:90
+mat_back
+bounds:402,83,43,58
+mat_font
+bounds:402,143,56,56
+than
+bounds:2,2,363,398
+rotate:90
