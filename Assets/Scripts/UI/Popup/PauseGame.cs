@@ -20,7 +20,6 @@ public class PauseGame : BasePopup
     public override void Show(object data)
     {
         float se = PlayerPrefs.GetFloat("SE_VOLUME_KEY");
-        Debug.Log(se);
         SoundFX.value = se;
         MusicBG.value = PlayerPrefs.GetFloat("BGM_VOLUME_KEY");
         base.Show(data);
@@ -42,11 +41,17 @@ public class PauseGame : BasePopup
     public void OnContinueButton()
     {
         Time.timeScale = 1.0f;
-        UIManager.Instance.ShowScreen<IngameUI>(true);
+        UIManager.Instance.ShowScreen<IngameUI>(null,true);
         this.Hide();
     }
     public void DebugGame()
     {
-        this.Broadcast(EventID.debug);
+        this.Hide();
+        Time.timeScale = 1.0f;
+        UIManager.Instance.ShowScreen<Conversation>("cat",true);
+    }
+    public void SaveGame()
+    {
+        DataManager.Instance.SaveGame();
     }
 }

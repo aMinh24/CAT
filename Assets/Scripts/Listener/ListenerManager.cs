@@ -32,6 +32,13 @@ public class ListenerManager : BaseManager<ListenerManager>
                 listeners[id] -= action;
         }
     }
+    public void UnregisterAll(EventID id)
+    {
+        if (listeners.ContainsKey(id))
+        {
+            listeners.Remove(id);
+        }
+    }
     public void Broadcast(EventID id, object? data)
     {
         if (listeners.ContainsKey(id))
@@ -55,6 +62,13 @@ public static class ListenerManagerExtension
         if (ListenerManager.HasInstance)
         {
             ListenerManager.Instance.Unregister(id, action);
+        }
+    }
+    public static void UnregisterAll(this MonoBehaviour listener, EventID id)
+    {
+        if (ListenerManager.HasInstance)
+        {
+            ListenerManager.Instance.UnregisterAll(id);
         }
     }
     public static void Broadcast(this MonoBehaviour listener, EventID id)

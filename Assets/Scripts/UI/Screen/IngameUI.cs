@@ -20,13 +20,21 @@ public class IngameUI : BaseScreen
     public bool isShowTutorial = false;
     public bool checkInteractButton;
     public bool lockInteractButton;
+    private void OnEnable()
+    {
+        EnhancedTouchSupport.Enable();
+    }
+    private void OnDisable()
+    {
+        EnhancedTouchSupport.Disable();
+    }
     public override void Hide()
     {
         base.Hide();
 
         EnTouch.Touch.onFingerDown -= HandleFingerDown;
         EnTouch.Touch.onFingerUp -= HandleFingerUp;
-        EnhancedTouchSupport.Disable();
+        //EnhancedTouchSupport.Disable();
         this.Unregister(EventID.Tutorial, ShowTutorial);
     }
 
@@ -43,7 +51,7 @@ public class IngameUI : BaseScreen
 
     public override void Show(object data)
     {
-        EnhancedTouchSupport.Enable();
+        
 
         EnTouch.Touch.onFingerDown += HandleFingerDown;
         EnTouch.Touch.onFingerUp += HandleFingerUp;

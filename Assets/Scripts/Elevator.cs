@@ -6,7 +6,7 @@ using UnityEngine;
 public class Elevator : MonoBehaviour
 {
     public Transform[] floor;
-    private int curFl = 0;
+    public int curFl = 0;
     public Collider2D[] doors;
     public bool isMoving = false;
     public SpriteRenderer buttonColor;
@@ -15,20 +15,14 @@ public class Elevator : MonoBehaviour
     {
         transform.position = floor[curFl].position;
         this.Register(EventID.LoadData, loadGame);
-        this.Register(EventID.saveData, saveGame);
     }
     public void loadGame(object? data)
     {
         if (DataManager.HasInstance)
         {
             curFl = DataManager.Instance.dataPlayerSO.curElevator;
-        }
-    }
-    public void saveGame(object? data)
-    {
-        if (DataManager.HasInstance)
-        {
-            DataManager.Instance.dataPlayerSO.curElevator = curFl;
+            transform.position = floor[curFl].position;
+            Debug.Log("load ele");
         }
     }
     public void UseEle(GameObject o)
@@ -64,6 +58,10 @@ public class Elevator : MonoBehaviour
             buttonColor.color = Color.green;
             o.transform.SetParent(null);
         });
+        if (DataManager.HasInstance)
+        {
+            DataManager.Instance.dataPlayerSO.curElevator = curFl;
+        }
 
     }
 }

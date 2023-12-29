@@ -31,7 +31,7 @@ public class Interact : MonoBehaviour
                 this.gameObject.transform.position = DataManager.Instance.dataPlayerSO.positionCat;
             }
         }
-        Debug.Log("load interact");
+        //Debug.Log("load interact");
     }
     public void saveGame(object? data)
     {

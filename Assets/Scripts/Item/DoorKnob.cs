@@ -9,11 +9,17 @@ public class DoorKnob : InteractItem
     public GameObject bubble;
     public override void Interact(object data, bool f)
     {
+        if (f)
+        {
+            openDoor.SetActive(true);
+            door.SetActive(false);
+            this.gameObject.SetActive(false);
+        }
         if (data is GameObject obj)
         {
             Interact inter = obj.GetComponent<Interact>();
            
-            if (inter.rmItem(Items.Key) || f)
+            if (inter.rmItem(Items.Key))
             {
                 openDoor.SetActive(true);
                 door.SetActive(false);

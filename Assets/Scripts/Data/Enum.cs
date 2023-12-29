@@ -11,6 +11,7 @@ public enum Items{
     Key,
     Crance,
     OutFall,
+    eleDoor,
 }
 public enum CatStateID
 {

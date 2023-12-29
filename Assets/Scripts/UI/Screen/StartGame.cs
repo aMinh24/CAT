@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
+
 public class StartGame : BaseScreen
 {
     public Image img;
@@ -25,8 +27,34 @@ public class StartGame : BaseScreen
             if (b) startGame();
             else restartGame();
         }
-        
+        if (data is string s)
+        {
+            StartCoroutine(replay());
+        }
         base.Show(data);
+    }
+    private IEnumerator replay()
+    {
+        this.UnregisterAll(EventID.saveData);
+        this.UnregisterAll(EventID.LoadData);
+        rect.DOScale(Vector3.one, 0f);
+        Sequence sq = DOTween.Sequence();
+        sq.Join(bg.DOFade(1f, 0.5f));
+        sq.Join(img.DOFade(1f, 0.5f));
+        yield return new WaitForSeconds(0.5f);
+        AsyncOperation async = SceneManager.LoadSceneAsync(0);
+        async.allowSceneActivation = false;
+        while (!async.isDone)
+        {
+            if (async.progress >= 0.9f)
+            {
+                async.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.5f);
+        
+
     }
     private void restartGame()
     {

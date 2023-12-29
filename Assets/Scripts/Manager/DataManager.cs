@@ -8,21 +8,24 @@ public class DataManager : BaseManager<DataManager>
 {
     public DataConfig Config;
     public DataPlayerSO dataPlayerSO;
+    public ScriptNPC npc;
     private string dataFilePath;
+    private bool firstFrame = true;
     private void Start()
     {
         dataFilePath = Application.persistentDataPath + "/playerdata.json";
         LoadGame();
-        this.Broadcast(EventID.LoadData);
-        this.Register(EventID.debug,DebugGame);
     }
-    public void DebugGame(object? data)
+    private void Update()
     {
-        Debug.Log("dataPath:  " + dataFilePath);
-        Debug.Log(JsonUtility.ToJson(dataPlayerSO));
+        if (firstFrame)
+        {
+            this.Broadcast(EventID.LoadData);
+            firstFrame = false;
+        }
     }
     private void OnApplicationQuit()
-    {     
+    {
         SaveGame();
     }
     private void OnApplicationFocus(bool focus)
@@ -34,7 +37,7 @@ public class DataManager : BaseManager<DataManager>
     }
     private void LoadGame()
     {
-        string content =  ReadDataSO(dataFilePath);
+        string content = ReadDataSO(dataFilePath);
         if (content == null)
         {
             WriteDataSO(dataPlayerSO, dataFilePath);
@@ -44,9 +47,11 @@ public class DataManager : BaseManager<DataManager>
     }
     public void SaveGame()
     {
+        Debug.Log("SaveGame");
         this.Broadcast(EventID.saveData);
         WriteDataSO(dataPlayerSO, dataFilePath);
     }
+    //public void ForceSave
     private void WriteDataSO(object data, string path)
     {
         string contents = JsonUtility.ToJson(data);

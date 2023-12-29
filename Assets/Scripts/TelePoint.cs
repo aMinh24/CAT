@@ -14,6 +14,7 @@ public class TelePoint : MonoBehaviour
             if (end != null)
             {
                 end.SetActive(true);
+                DataManager.Instance.dataPlayerSO.curRoom = end.name;
             }
             collision.gameObject.transform.position = point.position;
             if (DataManager.HasInstance)

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c566093812d6c6141bdb2a481307f892, type: 3}
+  m_Name: NPC
+  m_EditorClassIdentifier: 
+  startCat: 'Blackcat:  '
+  cat:
+  - Hello there! Look at which cat is here.
+  - Seems like you've also escaped from confinement like me, huh? It's really cramped
+    in there, I don't like it.
+  - They feed us dirty stuff. Many cats are forced to stay in a tightly packed cage.
+  - Be careful, wandering like this could easily get you caught and put back in there.
+  - Since escaping the cage, I haven't been able to find a way out of this eerie
+    place.
+  - If you find a way out, please take me with you.

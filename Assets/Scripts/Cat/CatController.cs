@@ -84,9 +84,9 @@ public class CatController : MonoBehaviour
     #region condition
     public bool IsGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.2f,jumpableGround);
-        
-        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.05f, jumpableGround) && hit;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0.35f,0,0), Vector2.down, 0.2f,jumpableGround);
+        RaycastHit2D hit2 = Physics2D.Raycast(transform.position + new Vector3(0.35f, 0, 0), Vector2.down, 0.2f, jumpableGround);
+        return Physics2D.BoxCast(boxcollider.bounds.center, boxcollider.bounds.size, 0, Vector2.down, 0.05f, jumpableGround) && (hit ||hit2);
     }
     public bool IsLanding()
     {

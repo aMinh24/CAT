@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   positionCat: {x: 0, y: 0, z: 0}
+  curRoom: 
   canUseItems: 
   collectedItems: 
   interactedItems: 
