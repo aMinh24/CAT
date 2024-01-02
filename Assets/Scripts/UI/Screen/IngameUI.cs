@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.EnhancedTouch;
@@ -20,6 +21,8 @@ public class IngameUI : BaseScreen
     public bool isShowTutorial = false;
     public bool checkInteractButton;
     public bool lockInteractButton;
+    public TextMeshProUGUI[] instr;
+    public Image imgIns;
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -51,20 +54,29 @@ public class IngameUI : BaseScreen
 
     public override void Show(object data)
     {
-        
-
+        //EnhancedTouchSupport.Enable();
+        GameObject c = GameObject.FindGameObjectWithTag("Player");
         EnTouch.Touch.onFingerDown += HandleFingerDown;
         EnTouch.Touch.onFingerUp += HandleFingerUp;
-        if (data is Interact i)
-        {
-            cat = i.gameObject.GetComponent<CatController>();
-            i.interact = interact;
-            inter = i;
-        }
+        //if (data is Interact i)
+        //{
+            cat = c.gameObject.GetComponent<CatController>();
+            inter = cat.GetComponent<Interact>();
+            inter.interact = interact;
+        //}
         this.Register(EventID.Tutorial, ShowTutorial);
+        this.Register(EventID.StartUI, startUI);
         joystick.anchoredPosition = joystickPosition;
         base.Show(data);
 
+    }
+    public void startUI(object data)
+    {
+        if (data is Interact i)
+        {
+            cat = i.GetComponent<CatController>();
+            i.interact = interact;
+        }
     }
     public void OnPauseGameButton()
     {
@@ -86,7 +98,12 @@ public class IngameUI : BaseScreen
         isShowTutorial = true;
         StartCoroutine(freezeScreen());
         checkInteractButton = true;
-        tutorial.SetActive(true);
+        //tutorial.SetActive(true);
+        foreach (TextMeshProUGUI t in instr)
+        {
+            t.enabled = true;
+        }
+        imgIns.enabled = true;
     }
     public void OnInteractButton()
     {
@@ -96,7 +113,12 @@ public class IngameUI : BaseScreen
             {
                 tip.SetActive(false);
                 isShowTutorial = false;
-                tutorial.SetActive(false);
+                //tutorial.SetActive(false);
+                foreach(TextMeshProUGUI t in instr)
+                {
+                    t.enabled = false;
+                }
+                imgIns.enabled = false;
                 cat.freezing = false;
             }
             inter.OnButtonInteract();

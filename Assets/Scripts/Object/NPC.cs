@@ -8,6 +8,7 @@ public class NPC : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         UIManager.Instance.ShowScreen<Conversation>(nameConversation, true);
-        //this.enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        this.enabled = false;
     }
 }

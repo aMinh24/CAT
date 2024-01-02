@@ -6,7 +6,7 @@ public abstract class InteractItem : MonoBehaviour
 {
     public Items nameItem;
     public bool canUse;
-    private void Start()
+    private void Awake()
     {
         this.Register(EventID.LoadData, loadGame);
     }

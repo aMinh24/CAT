@@ -5,6 +5,10 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public Dictionary<string, GameObject> rooms = new Dictionary<string, GameObject>();
+    private void Awake()
+    {
+        this.Register(EventID.LoadData, loadGame);
+    }
     private void Start()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Room");
@@ -13,7 +17,7 @@ public class RoomManager : MonoBehaviour
             rooms.Add(obj.name, obj);
             //obj.SetActive(false);
         }
-        this.Register(EventID.LoadData, loadGame);
+        this.Broadcast(EventID.LoadData);
     }
     public void loadGame(object? data)
     {

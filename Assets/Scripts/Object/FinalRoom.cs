@@ -51,6 +51,7 @@ public class FinalRoom : MonoBehaviour
     }
     IEnumerator endGame()
     {
+        AudioManager.Instance.PlaySE("EndGame");
         cat.GetComponent<CatController>().freezing = true;
         end = true;
         bossAnim.skeleton.ScaleX = -1;
@@ -60,6 +61,9 @@ public class FinalRoom : MonoBehaviour
         TrackEntry trackEntry = bossAnim.state.SetAnimation(0, attack, false);
         trackEntry.AnimationEnd = 1.15f;
         //trackEntry.TimeScale = 0.3f;
+        //yield return new WaitForSpineAnimationComplete(trackEntry);
+        yield return new WaitForSeconds(0.98f);
+        AudioManager.Instance.PlaySE("Stab");
         yield return new WaitForSpineAnimationComplete(trackEntry);
         Time.timeScale = 1;
         yield return new WaitForSeconds(0.5f);

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Custom : EditorWindow
 {
-    [MenuItem("OpenScene/MainMenu",false)]
+    [MenuItem("OpenScene/Main",false)]
     public static void Menu()
     {
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());

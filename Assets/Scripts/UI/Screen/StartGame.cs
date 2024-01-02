@@ -24,7 +24,7 @@ public class StartGame : BaseScreen
     {
         if (data is bool b)
         {
-            if (b) startGame();
+            if (b) StartCoroutine(startGame());
             else restartGame();
         }
         if (data is string s)
@@ -42,7 +42,7 @@ public class StartGame : BaseScreen
         sq.Join(bg.DOFade(1f, 0.5f));
         sq.Join(img.DOFade(1f, 0.5f));
         yield return new WaitForSeconds(0.5f);
-        AsyncOperation async = SceneManager.LoadSceneAsync(0);
+        AsyncOperation async = SceneManager.LoadSceneAsync(1);
         async.allowSceneActivation = false;
         while (!async.isDone)
         {
@@ -53,13 +53,13 @@ public class StartGame : BaseScreen
             yield return null;
         }
         yield return new WaitForSeconds(0.5f);
-        
+        UIManager.Instance.ShowScreen<IngameUI>(null, true);
 
     }
     private void restartGame()
     {
-        rect.DOScale(Vector3.one,0f);
-        Sequence sq= DOTween.Sequence();
+        rect.DOScale(Vector3.one, 0f);
+        Sequence sq = DOTween.Sequence();
         sq.Join(bg.DOFade(1f, 0.5f));
         sq.Join(img.DOFade(1f, 0.5f));
         sq.OnComplete(() =>
@@ -73,26 +73,30 @@ public class StartGame : BaseScreen
             });
         });
     }
-    private void startGame()
+    private IEnumerator startGame()
     {
         Sequence sq = DOTween.Sequence();
         sq.Join(rect.DOScale(new Vector3(1, 1, 0), 1f));
         sq.Join(rect.DORotate(new Vector3(0, 0, -360), 1f, RotateMode.FastBeyond360));
-        sq.AppendInterval(1f);
-        sq.OnComplete(() =>
+
+        yield return new WaitForSeconds(0.5f);
+        AsyncOperation async = SceneManager.LoadSceneAsync(1);
+        async.allowSceneActivation = false;
+        while (!async.isDone)
         {
-            Sequence sqq = DOTween.Sequence();
-            sqq.Join(rect.DOScale(new Vector3(15, 15, 0), 1f));
-            //sqq.Join(rect.DORotate(Vector3.zero, 0.5f));
-            sqq.Join(bg.DOFade(0f, 1f));
-            sqq.Join(img.DOFade(0f, 1f));
-            sqq.OnComplete(() =>
+            if (async.progress >= 0.9f)
             {
-                UIManager.Instance.ShowScreen<IngameUI>(null, true);
-            });
-
-        });
-
-        //UIManager.Instance.ShowScreen<MainMenu>(null, true);
+                async.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+        sq.AppendInterval(1f);
+        Sequence sqq = DOTween.Sequence();
+        sqq.Join(rect.DOScale(new Vector3(15, 15, 0), 1f));
+        //sqq.Join(rect.DORotate(Vector3.zero, 0.5f));
+        sqq.Join(bg.DOFade(0f, 1f));
+        sqq.Join(img.DOFade(0f, 1f));
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.ShowScreen<IngameUI>(null, true);
     }
 }

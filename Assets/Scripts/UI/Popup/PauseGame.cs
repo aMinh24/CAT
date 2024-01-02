@@ -7,8 +7,12 @@ public class PauseGame : BasePopup
 {
     public Slider SoundFX;
     public Slider MusicBG;
+    public GameObject SliderFX;
+    public GameObject SliderBG;
     public override void Hide()
     {
+        SliderFX.SetActive(false);
+        SliderBG.SetActive(false);
         base.Hide();
     }
 
@@ -19,10 +23,14 @@ public class PauseGame : BasePopup
 
     public override void Show(object data)
     {
+        base.Show(data);
+        SliderFX.SetActive(true);
+        SliderBG.SetActive(true);
         float se = PlayerPrefs.GetFloat("SE_VOLUME_KEY");
+        Debug.Log(se);
         SoundFX.value = se;
         MusicBG.value = PlayerPrefs.GetFloat("BGM_VOLUME_KEY");
-        base.Show(data);
+        
     }
     public void changVolumeSound(float volume)
     {

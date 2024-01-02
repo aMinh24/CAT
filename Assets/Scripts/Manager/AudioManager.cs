@@ -36,6 +36,8 @@ public class AudioManager : BaseManager<AudioManager>
         this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
         this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
         this.AttachSESource.volume = PlayerPrefs.GetFloat("SE_VOLUME_KEY", 1f);
+        PlayerPrefs.SetFloat("SE_VOLUME_KEY", AttachSESource.volume);
+        PlayerPrefs.SetFloat("BGM_VOLUME_KEY", this.AttachBGMSource.volume);
         if (!this.AttachBGMSource.isPlaying)
         {
             this.PlayBGM("BGM" + this.currentBGM.ToString(), 0.9f);
@@ -168,6 +170,7 @@ public class AudioManager : BaseManager<AudioManager>
     // Token: 0x06000101 RID: 257 RVA: 0x00006B72 File Offset: 0x00004D72
     public void ChangeSEVolume(float SEVolume)
     {
+        
         this.AttachSESource.volume = SEVolume;
         PlayerPrefs.SetFloat("SE_VOLUME_KEY", SEVolume);
     }

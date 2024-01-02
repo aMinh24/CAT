@@ -1,11 +1,13 @@
-public enum UIType { 
+public enum UIType
+{
     Unknow,
     Screen,
     Popup,
     Notify,
     Overlap
 }
-public enum Items{
+public enum Items
+{
     None,
     KeyFirstDoor,
     Key,
@@ -28,7 +30,8 @@ public enum EventID
     StopAudio,
     LoadData,
     saveData,
-    debug
+    debug,
+    StartUI
 }
 public enum BossStateID
 {

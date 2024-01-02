@@ -14,6 +14,7 @@ public class Key : InteractItem
             //txt.SetActive(true);
             //transform.SetParent(obj.transform);
             //collider.enabled = false;
+            AudioManager.Instance.PlaySE("GetKey");
             this.gameObject.SetActive(false);
         }
     }

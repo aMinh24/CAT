@@ -7,6 +7,6 @@ public class JoystickCrance : InteractItem
     public CranceController Controller;
     public override void Interact(object data, bool f)
     {
-        Controller.nextStepLevers();
+        StartCoroutine(Controller.nextStepLevers());
     }
 }

@@ -11,7 +11,7 @@ public class Elevator : MonoBehaviour
     public bool isMoving = false;
     public SpriteRenderer buttonColor;
 
-    private void Start()
+    private void Awake()
     {
         transform.position = floor[curFl].position;
         this.Register(EventID.LoadData, loadGame);

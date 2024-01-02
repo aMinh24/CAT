@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2381095884315181436
 RectTransform:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2528763121301418639
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1752,6 +1752,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundFX: {fileID: 7845969989678737205}
   MusicBG: {fileID: 7845969990579708661}
+  SliderFX: {fileID: 7845969989678737203}
+  SliderBG: {fileID: 7845969990579708659}
 --- !u!1 &7845969990554080100
 GameObject:
   m_ObjectHideFlags: 0

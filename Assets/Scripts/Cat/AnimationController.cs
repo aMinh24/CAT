@@ -30,7 +30,6 @@ public class AnimationController : MonoBehaviour
                 }
             case CatStateID.Jump:
                 {
-                    Debug.Log("AnimJump");
                     //skeletonAnimation.state.SetAnimation(0, "Jump_Up", false);
                     PlayAnimationAtStartTime();
                     break;

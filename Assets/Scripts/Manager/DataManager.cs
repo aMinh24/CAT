@@ -16,14 +16,14 @@ public class DataManager : BaseManager<DataManager>
         dataFilePath = Application.persistentDataPath + "/playerdata.json";
         LoadGame();
     }
-    private void Update()
-    {
-        if (firstFrame)
-        {
-            this.Broadcast(EventID.LoadData);
-            firstFrame = false;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (firstFrame)
+    //    {
+    //        this.Broadcast(EventID.LoadData);
+    //        firstFrame = false;
+    //    }
+    //}
     private void OnApplicationQuit()
     {
         SaveGame();

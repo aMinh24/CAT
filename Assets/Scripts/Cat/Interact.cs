@@ -11,14 +11,15 @@ public class Interact : MonoBehaviour
     public List<Items> canUseItems = new List<Items> ();
     public CinemachineConfiner confiner;
     public bool firstInteract = true;
-    private void Start()
+    private void Awake()
     {
-        if (UIManager.HasInstance)
-        {
-            UIManager.Instance.ShowScreen<IngameUI>(this, true);
-        }
         this.Register(EventID.LoadData, loadGame);
         this.Register(EventID.saveData, saveGame);
+    }
+    private void Start()
+    {
+        this.Broadcast(EventID.StartUI, this);
+
     }
     public void loadGame(object? data)
     {
@@ -36,7 +37,6 @@ public class Interact : MonoBehaviour
     public void saveGame(object? data)
     {
         DataManager.Instance.dataPlayerSO.positionCat = this.gameObject.transform.position;
-        Debug.Log(this.gameObject.transform.position);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

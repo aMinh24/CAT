@@ -21,6 +21,7 @@ public class DoorKnob : InteractItem
            
             if (inter.rmItem(Items.Key))
             {
+                AudioManager.Instance.PlaySE("CatOpenDoor");
                 openDoor.SetActive(true);
                 door.SetActive(false);
                 this.gameObject.SetActive(false);

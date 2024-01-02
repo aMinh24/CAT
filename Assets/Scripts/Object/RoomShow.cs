@@ -33,6 +33,7 @@ public class RoomShow : MonoBehaviour
         yield return new WaitForSeconds(timeMove);
         bossAnim.state.SetAnimation(0, opendoor, false);
         yield return new WaitForSeconds(2f);
+        AudioManager.Instance.PlaySE("BossOpenDoor");
         door[0].SetActive(false);
         door[1].SetActive(true);
         yield return new WaitForSeconds(1f);
