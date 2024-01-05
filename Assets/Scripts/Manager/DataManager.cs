@@ -16,14 +16,6 @@ public class DataManager : BaseManager<DataManager>
         dataFilePath = Application.persistentDataPath + "/playerdata.json";
         LoadGame();
     }
-    //private void Update()
-    //{
-    //    if (firstFrame)
-    //    {
-    //        this.Broadcast(EventID.LoadData);
-    //        firstFrame = false;
-    //    }
-    //}
     private void OnApplicationQuit()
     {
         SaveGame();
@@ -47,11 +39,9 @@ public class DataManager : BaseManager<DataManager>
     }
     public void SaveGame()
     {
-        Debug.Log("SaveGame");
         this.Broadcast(EventID.saveData);
         WriteDataSO(dataPlayerSO, dataFilePath);
     }
-    //public void ForceSave
     private void WriteDataSO(object data, string path)
     {
         string contents = JsonUtility.ToJson(data);

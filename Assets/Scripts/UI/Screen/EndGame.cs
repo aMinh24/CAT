@@ -28,8 +28,6 @@ public class EndGame : BaseScreen
         if (DataManager.HasInstance)
         {
             DataManager.Instance.dataPlayerSO.Reset();
-            //DataManager.Instance.SaveGame();
-            //this.Broadcast(EventID.LoadData);
         }
         UIManager.Instance.ShowScreen<StartGame>("replay", true);
         yield return null;

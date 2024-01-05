@@ -56,7 +56,7 @@ public class PauseGame : BasePopup
     {
         this.Hide();
         Time.timeScale = 1.0f;
-        UIManager.Instance.ShowScreen<Conversation>("cat",true);
+        UIManager.Instance.ShowScreen<EndGame>(null, true);
     }
     public void SaveGame()
     {
