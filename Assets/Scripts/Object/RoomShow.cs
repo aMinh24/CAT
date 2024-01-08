@@ -1,5 +1,6 @@
 using Cinemachine;
 using DG.Tweening;
+using Spine;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,9 +29,25 @@ public class RoomShow : MonoBehaviour
         virtualCamera.Priority = 30;
         cat.freezing = true;
         yield return new WaitForSeconds(2f);
-        bossAnim.state.SetAnimation(0, move, true);
+        TrackEntry track = bossAnim.state.SetAnimation(0, move, true);
         bossTransform.DOLocalMoveX(desPoint.localPosition.x, timeMove);
-        yield return new WaitForSeconds(timeMove);
+        float time = 0;
+        while (desPoint.localPosition.x - bossTransform.localPosition.x > 0.01)
+        {
+            time+= Time.deltaTime;
+            if (time > timeMove * 2 / 3)
+            {
+                track.TimeScale = Mathf.Clamp01((timeMove - time)/2.2f);
+            }
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(timeMove-0.2f);
+        //track.TimeScale = 0.6f;
+        //yield return new WaitForSeconds(0.2f);
+        //track.TimeScale = 1f;
+
+
         bossAnim.state.SetAnimation(0, opendoor, false);
         yield return new WaitForSeconds(2f);
         AudioManager.Instance.PlaySE("BossOpenDoor");

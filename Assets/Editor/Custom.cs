@@ -13,16 +13,11 @@ public class Custom : EditorWindow
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
         EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");
     }
-    [MenuItem("OpenScene/Game", false)]
+    [MenuItem("OpenScene/Start", false)]
     public static void Game()
     {
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-        EditorSceneManager.OpenScene("Assets/Scenes/Game.unity");
+        EditorSceneManager.OpenScene("Assets/Scenes/StartGame.unity");
     }
-    [MenuItem("OpenScene/Game1", false)]
-    public static void Game1()
-    {
-        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-        EditorSceneManager.OpenScene("Assets/Scenes/GameMap1.unity");
-    }
+    
 }

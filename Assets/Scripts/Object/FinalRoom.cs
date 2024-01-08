@@ -55,7 +55,7 @@ public class FinalRoom : MonoBehaviour
         cat.GetComponent<CatController>().freezing = true;
         end = true;
         bossAnim.skeleton.ScaleX = -1;
-        bossTransform.position = cat.gameObject.transform.position - new Vector3(2.2f, 0, 0);
+        bossTransform.position = cat.gameObject.transform.position - new Vector3(2.4f, 0, 0);
         Time.timeScale = 0.3f;
         yield return null;
         TrackEntry trackEntry = bossAnim.state.SetAnimation(0, attack, false);
@@ -66,7 +66,9 @@ public class FinalRoom : MonoBehaviour
         AudioManager.Instance.PlaySE("Stab");
         yield return new WaitForSpineAnimationComplete(trackEntry);
         Time.timeScale = 1;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.35f);
+        AudioManager.Instance.PlaySE("EndPanel");
+        yield return new WaitForSeconds(0.35f);
         UIManager.Instance.ShowScreen<EndGame>(null, true);
     }
 }

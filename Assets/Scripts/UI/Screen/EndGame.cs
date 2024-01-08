@@ -18,6 +18,7 @@ public class EndGame : BaseScreen
     public override void Show(object data)
     {
         base.Show(data);
+        AudioManager.Instance.PlayGT("EndGT");
     }
     public void OnReplayButton()
     {
@@ -30,6 +31,7 @@ public class EndGame : BaseScreen
             DataManager.Instance.dataPlayerSO.Reset();
         }
         UIManager.Instance.ShowScreen<StartGame>("replay", true);
+        
         yield return null;
     }
 }

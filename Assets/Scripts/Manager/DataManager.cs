@@ -16,17 +16,6 @@ public class DataManager : BaseManager<DataManager>
         dataFilePath = Application.persistentDataPath + "/playerdata.json";
         LoadGame();
     }
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
-    private void OnApplicationFocus(bool focus)
-    {
-        if (!focus)
-        {
-            SaveGame();
-        }
-    }
     private void LoadGame()
     {
         string content = ReadDataSO(dataFilePath);

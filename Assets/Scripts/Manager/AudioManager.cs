@@ -33,15 +33,15 @@ public class AudioManager : BaseManager<AudioManager>
 
     private void Start()
     {
-        this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
-        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
+        this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 1f);
+        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 1f);
         this.AttachSESource.volume = PlayerPrefs.GetFloat("SE_VOLUME_KEY", 1f);
         PlayerPrefs.SetFloat("SE_VOLUME_KEY", AttachSESource.volume);
         PlayerPrefs.SetFloat("BGM_VOLUME_KEY", this.AttachBGMSource.volume);
-        if (!this.AttachBGMSource.isPlaying)
-        {
-            this.PlayBGM("BGM" + this.currentBGM.ToString(), 0.9f);
-        }
+        //if (!this.AttachBGMSource.isPlaying)
+        //{
+        //    this.PlayBGM("BGM" + this.currentBGM.ToString(), 0.9f);
+        //}
     }
     public void StopAllAudio(object data)
     {
@@ -75,7 +75,10 @@ public class AudioManager : BaseManager<AudioManager>
     {
         this.AttachSESource.PlayOneShot(this.seDic[this.nextSEName]);
     }
-
+    public void PlayBGM()
+    {
+        PlayBGM("BGM" + ((this.currentBGM + 1) % this.bgmDic.Count).ToString());
+    }
     public void PlayBGM(string bgmName, float fadeSpeedRate = 0.9f)
     {
         if (!this.bgmDic.ContainsKey(bgmName))
@@ -97,32 +100,52 @@ public class AudioManager : BaseManager<AudioManager>
         }
     }
 
-    // Token: 0x060000FC RID: 252 RVA: 0x00006980 File Offset: 0x00004B80
-    public void PlayGT()
+    public void PlayGT(string name)
     {
-        this.nextGTName = "GTHEME" + this.currentGT.ToString();
+        if (name.Equals(nextGTName)) return;
+        this.nextGTName = name;
         this.AttachGTSource.clip = this.gtDic[this.nextGTName];
-        this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
+        this.AttachGTSource.volume = 0;
         this.AttachGTSource.Play();
-        this.currentGT = (this.currentGT + 1) % this.gtDic.Count;
         this.isPlayingGT = true;
+        StartCoroutine(FadeInRoutineGT());
     }
+    private IEnumerator FadeInRoutineGT()
+    {
+        float targetVolume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 1f);
+        while ( targetVolume- AttachGTSource.volume >0.01f)
+        {
+            AttachGTSource.volume = (targetVolume-AttachGTSource.volume)/2;
+            yield return null;
+        }
+        AttachGTSource.volume = targetVolume;
+        yield return null;
+    }
+    //public void PlayGT()
+    //{
 
-    // Token: 0x060000FD RID: 253 RVA: 0x00006A0A File Offset: 0x00004C0A
+        //this.nextGTName = "GTHEME" + this.currentGT.ToString();
+        //this.AttachGTSource.clip = this.gtDic[this.nextGTName];
+        //this.AttachGTSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
+        //this.AttachGTSource.Play();
+        //this.currentGT = (this.currentGT + 1) % this.gtDic.Count;
+        //this.isPlayingGT = true;
+    //}
+
+
     public void StopGT()
     {
         this.isPlayingGT = false;
         this.AttachGTSource.Stop();
     }
 
-    // Token: 0x060000FE RID: 254 RVA: 0x00006A1E File Offset: 0x00004C1E
     public void FadeOutBGM(float fadeSpeedRate = 0.3f)
     {
         this.bgmFadeSpeedRate = fadeSpeedRate;
         this.isFadeOut = true;
     }
 
-    // Token: 0x060000FF RID: 255 RVA: 0x00006A30 File Offset: 0x00004C30
+
     private void Update()
     {
         if (this.isPlayingGT)
@@ -136,28 +159,28 @@ public class AudioManager : BaseManager<AudioManager>
             }
             else
             {
-                this.PlayGT();
+                this.PlayGT(nextGTName);
             }
         }
-        if (this.AttachBGMSource != null && this.AttachBGMSource.clip.length - this.AttachBGMSource.time <= 1f)
-        {
-            this.FadeOutBGM(0.3f);
-        }
-        if (!this.isFadeOut)
-        {
-            return;
-        }
-        this.AttachBGMSource.volume -= Time.deltaTime * this.bgmFadeSpeedRate;
-        if (this.AttachBGMSource.volume <= 0f)
-        {
-            this.AttachBGMSource.Stop();
-            this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
-            this.isFadeOut = false;
-            if (!string.IsNullOrEmpty(this.nextBGMName))
-            {
-                this.PlayBGM(this.nextBGMName, 0.9f);
-            }
-        }
+        //if (this.AttachBGMSource != null && this.AttachBGMSource.clip.length - this.AttachBGMSource.time <= 1f)
+        //{
+        //    this.FadeOutBGM(0.3f);
+        //}
+        //if (!this.isFadeOut)
+        //{
+        //    return;
+        //}
+        //this.AttachBGMSource.volume -= Time.deltaTime * this.bgmFadeSpeedRate;
+        //if (this.AttachBGMSource.volume <= 0f)
+        //{
+        //    this.AttachBGMSource.Stop();
+        //    this.AttachBGMSource.volume = PlayerPrefs.GetFloat("BGM_VOLUME_KEY", 0.5f);
+        //    this.isFadeOut = false;
+        //    if (!string.IsNullOrEmpty(this.nextBGMName))
+        //    {
+        //        this.PlayBGM(this.nextBGMName, 0.9f);
+        //    }
+        //}
     }
 
     // Token: 0x06000100 RID: 256 RVA: 0x00006B59 File Offset: 0x00004D59

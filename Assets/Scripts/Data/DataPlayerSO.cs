@@ -7,6 +7,7 @@ public class DataPlayerSO: ScriptableObject
     [Header("Player")]
     public Vector3 positionCat;
     public string curRoom;
+    public string curGT = "Start";
     public List<Items> canUseItems;
     [Header("Environment")]
     public List<Items> collectedItems;
@@ -22,5 +23,6 @@ public class DataPlayerSO: ScriptableObject
         interactedItems.Clear();
         tutorial = true;
         curElevator = 0;
+        curGT = "Start";
     }
 }

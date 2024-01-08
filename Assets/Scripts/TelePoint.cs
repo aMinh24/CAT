@@ -6,6 +6,7 @@ public class TelePoint : MonoBehaviour
     public GameObject start;
     public GameObject end;
     public Transform point;
+    public string nameTheme;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -17,9 +18,14 @@ public class TelePoint : MonoBehaviour
                 DataManager.Instance.dataPlayerSO.curRoom = end.name;
             }
             collision.gameObject.transform.position = point.position;
+            if (!string.IsNullOrEmpty(nameTheme))
+            {
+                AudioManager.Instance.PlayGT(nameTheme);
+                DataManager.Instance.dataPlayerSO.curGT = nameTheme;
+            }
             if (DataManager.HasInstance)
             {
-                DataManager.Instance.dataPlayerSO.positionCat = point.position;
+                DataManager.Instance.SaveGame();
             }
             if (start != null)
             {

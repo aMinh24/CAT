@@ -18,6 +18,11 @@ public class RoomManager : MonoBehaviour
             //obj.SetActive(false);
         }
         this.Broadcast(EventID.LoadData);
+        if (string.IsNullOrEmpty(DataManager.Instance.dataPlayerSO.curGT))
+        {
+            AudioManager.Instance.PlayGT("Start");
+        }
+        else AudioManager.Instance.PlayGT(DataManager.Instance.dataPlayerSO.curGT);
     }
     public void loadGame(object? data)
     {

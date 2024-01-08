@@ -53,6 +53,8 @@ public class StartGame : BaseScreen
             yield return null;
         }
         yield return new WaitForSeconds(0.5f);
+        Debug.Log("saveGame");
+        DataManager.Instance.SaveGame();
         UIManager.Instance.ShowScreen<IngameUI>(null, true);
 
     }
