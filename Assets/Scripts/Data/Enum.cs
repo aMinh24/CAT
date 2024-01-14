@@ -31,7 +31,10 @@ public enum EventID
     LoadData,
     saveData,
     debug,
-    StartUI
+    StartUI,
+    EndTime,
+    CollectSoul,
+    FullSoul,
 }
 public enum BossStateID
 {

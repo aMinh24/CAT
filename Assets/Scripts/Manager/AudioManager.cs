@@ -146,22 +146,22 @@ public class AudioManager : BaseManager<AudioManager>
     }
 
 
-    private void Update()
-    {
-        if (this.isPlayingGT)
-        {
-            if (this.AttachGTSource.isPlaying)
-            {
-                if (this.AttachGTSource.clip.length - this.AttachGTSource.time < 1f)
-                {
-                    this.AttachGTSource.volume -= 0.3f * Time.deltaTime;
-                }
-            }
-            else
-            {
-                this.PlayGT(nextGTName);
-            }
-        }
+    //private void Update()
+    //{
+    //    if (this.isPlayingGT)
+    //    {
+    //        if (this.AttachGTSource.isPlaying)
+    //        {
+    //            if (this.AttachGTSource.clip.length - this.AttachGTSource.time < 1f)
+    //            {
+    //                this.AttachGTSource.volume -= 0.3f * Time.deltaTime;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            this.PlayGT(nextGTName);
+    //        }
+    //    }
         //if (this.AttachBGMSource != null && this.AttachBGMSource.clip.length - this.AttachBGMSource.time <= 1f)
         //{
         //    this.FadeOutBGM(0.3f);
@@ -181,12 +181,13 @@ public class AudioManager : BaseManager<AudioManager>
         //        this.PlayBGM(this.nextBGMName, 0.9f);
         //    }
         //}
-    }
+    //}
 
     // Token: 0x06000100 RID: 256 RVA: 0x00006B59 File Offset: 0x00004D59
     public void ChangeBGMVolume(float BGMVolume)
     {
         this.AttachBGMSource.volume = BGMVolume;
+        AttachGTSource.volume = BGMVolume;
         PlayerPrefs.SetFloat("BGM_VOLUME_KEY", BGMVolume);
     }
 

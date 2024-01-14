@@ -20,4 +20,6 @@ MonoBehaviour:
   acceleration: 2
   timeCoyote: 0.1
   gravity: 1
+  LifeTime: 120
+  TimePerSoul: 4
   slip: {fileID: 6200000, guid: 9553bcfb76bce1d4d8c9b51c56e18982, type: 2}

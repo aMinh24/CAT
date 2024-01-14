@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cc2c668b4b971438b34049f8ed05e1, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  positionCat: {x: 0, y: 0, z: 0}
-  curRoom: 
+  positionCat: {x: 400.82, y: 3.56, z: 0}
+  curRoom: FinalRoom
   curGT: Start
   canUseItems: 
-  collectedItems: 
-  interactedItems: 
-  tutorial: 1
+  collectedItems: 02000000
+  interactedItems: 010000000500000002000000
+  tutorial: 0
   curElevator: 0

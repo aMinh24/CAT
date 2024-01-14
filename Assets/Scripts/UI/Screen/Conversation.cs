@@ -7,7 +7,8 @@ using EnTouch = UnityEngine.InputSystem.EnhancedTouch;
 public class Conversation : BaseScreen
 {
     private bool next;
-    public TextMeshProUGUI txt;
+    private NPC m_Npc;
+    //public TextMeshProUGUI txt;
     public override void Hide()
     {
         base.Hide();
@@ -25,9 +26,10 @@ public class Conversation : BaseScreen
         base.Show(data);
         string start = "";
         string[] scripts = new string[0];
-        if (data is string s)
+        if (data is NPC npc)
         {
-            switch (s)
+            m_Npc = npc;
+            switch (npc.nameConversation)
             {
                 case "cat":
                     {
@@ -45,10 +47,9 @@ public class Conversation : BaseScreen
     }
     private IEnumerator showScript(string start, string[] scripts)
     {
-        Debug.Log(start);
         foreach(string script in scripts)
         {
-            txt.SetText(start+script);
+            m_Npc.txt.SetText(script);
             yield return new WaitForSeconds(0.5f);
             while (!next)
             {
@@ -57,6 +58,7 @@ public class Conversation : BaseScreen
             next = false;
         }
         UIManager.Instance.ShowScreen<IngameUI>(null, true);
+        m_Npc.boxChat.SetActive(false);
         yield return null;
     }
 }

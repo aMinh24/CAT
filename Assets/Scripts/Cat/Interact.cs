@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Interact : MonoBehaviour
 {
-    public Button interact;
+    public GameObject interact;
     public InteractItem curItem;
     public List<Items> canUseItems = new List<Items> ();
     public CinemachineConfiner confiner;

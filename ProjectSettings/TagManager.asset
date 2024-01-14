@@ -8,6 +8,7 @@ TagManager:
   - Redzone
   - DoorOut
   - Room
+  - Soul
   layers:
   - Default
   - TransparentFX

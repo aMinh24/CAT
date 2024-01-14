@@ -13,7 +13,7 @@ public class IngameUI : BaseScreen
     public RectTransform joystick;
     private Vector2 joystickPosition;
     public GameObject jumpButton;
-    public Button interact;
+    public GameObject interact;
     public Interact inter;
     private CatController cat;
     public GameObject tutorial;
@@ -23,6 +23,30 @@ public class IngameUI : BaseScreen
     public bool lockInteractButton;
     public TextMeshProUGUI[] instr;
     public Image imgIns;
+    public Slider soulTime;
+    private float timeCount;
+    private float lifeTime;
+    private bool collapse;
+    private void Update()
+    {
+        if (collapse||cat.freezing) return;
+        timeCount -= Time.deltaTime;
+        soulTime.value = Mathf.Clamp01(timeCount / lifeTime);
+        if (timeCount <= 0)
+        {
+            this.Broadcast(EventID.EndTime);
+            timeCount = lifeTime;
+        }
+    }
+    public void FullSoul(object data = null)
+    {
+        timeCount = lifeTime;
+    }
+    public void OnCollectSoul(object data = null)
+    {
+        timeCount += DataManager.Instance.Config.TimePerSoul;
+        if(timeCount >=lifeTime) { timeCount=lifeTime; }
+    }
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -43,6 +67,8 @@ public class IngameUI : BaseScreen
 
     public override void Init()
     {
+        this.Register(EventID.CollectSoul, OnCollectSoul);
+        this.Register(EventID.FullSoul, FullSoul);
         base.Init();
         checkInteractButton = false;
         lockInteractButton = false;
@@ -50,6 +76,9 @@ public class IngameUI : BaseScreen
         cat = inter.GetComponent<CatController>();
         inter.interact = interact;
         joystickPosition = joystick.anchoredPosition;
+        lifeTime = DataManager.Instance.Config.LifeTime;
+        timeCount = lifeTime;
+
     }
 
     public override void Show(object data)
@@ -60,13 +89,14 @@ public class IngameUI : BaseScreen
         EnTouch.Touch.onFingerUp += HandleFingerUp;
         //if (data is Interact i)
         //{
-            cat = c.gameObject.GetComponent<CatController>();
-            inter = cat.GetComponent<Interact>();
-            inter.interact = interact;
+        cat = c.gameObject.GetComponent<CatController>();
+        inter = cat.GetComponent<Interact>();
+        inter.interact = interact;
         //}
         this.Register(EventID.Tutorial, ShowTutorial);
         this.Register(EventID.StartUI, startUI);
         joystick.anchoredPosition = joystickPosition;
+        collapse = false;
         base.Show(data);
 
     }
@@ -80,14 +110,16 @@ public class IngameUI : BaseScreen
     }
     public void OnPauseGameButton()
     {
+        collapse = true;
         Time.timeScale = 0;
-        UIManager.Instance.ShowPopup<PauseGame>(null,true);
+        UIManager.Instance.ShowPopup<PauseGame>(null, true);
         this.Hide();
     }
 
     private IEnumerator freezeScreen()
     {
         cat.freezing = true;
+        collapse = true;
         lockInteractButton = true;
         yield return new WaitForSeconds(CONST.TIME_FREEZING);
         tip.SetActive(true);
@@ -114,12 +146,13 @@ public class IngameUI : BaseScreen
                 tip.SetActive(false);
                 isShowTutorial = false;
                 //tutorial.SetActive(false);
-                foreach(TextMeshProUGUI t in instr)
+                foreach (TextMeshProUGUI t in instr)
                 {
                     t.enabled = false;
                 }
                 imgIns.enabled = false;
                 cat.freezing = false;
+                collapse = false;
             }
             inter.OnButtonInteract();
         }

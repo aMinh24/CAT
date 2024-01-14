@@ -13,6 +13,8 @@ public class DataConfig : ScriptableObject
     public float acceleration = 10;
     public float timeCoyote;
     public float gravity = 1;
+    public float LifeTime = 30;
+    public float TimePerSoul = 2;
     public PhysicsMaterial2D slip;
 
 }
